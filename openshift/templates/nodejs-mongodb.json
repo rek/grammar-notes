@@ -10,7 +10,7 @@
     }
   },
   "labels": {
-    "template": "nodejs-mongodb-example"
+    "template": "grammar-notes"
   },
   "objects": [
     {
@@ -143,7 +143,7 @@
             "imageChangeParams": {
               "automatic": true,
               "containerNames": [
-                "nodejs-mongodb-example"
+                "grammar-notes"
               ],
               "from": {
                 "kind": "ImageStreamTag",
@@ -169,7 +169,7 @@
           "spec": {
             "containers": [
               {
-                "name": "nodejs-mongodb-example",
+                "name": "grammar-notes",
                 "image": " ",
                 "ports": [
                   {
@@ -364,7 +364,7 @@
       "displayName": "Name",
       "description": "The name assigned to all of the frontend objects defined in this template.",
       "required": true,
-      "value": "nodejs-mongodb-example"
+      "value": "grammar-notes"
     },
     {
       "name": "NAMESPACE",
