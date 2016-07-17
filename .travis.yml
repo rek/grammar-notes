@@ -1,0 +1,14 @@
+language: node_js
+
+node_js:
+  - "6"
+
+# before_script:
+  # - npm install -g gulp
+
+# script: gulp
+
+# deploy:
+  # provider: heroku
+  # api_key:
+    # secure: 4QM5n6dE1bRw2ueWNHY6
