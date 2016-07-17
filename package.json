@@ -36,6 +36,7 @@
   "devDependencies": {
     "babel-preset-es2015": "^6.9.0",
     "gulp-babel": "^6.1.2",
+    "gulp-load-tasks": "^0.8.4",
     "gulp-mocha": "^2.2.0"
   }
 }
