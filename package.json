@@ -31,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/rek/grammar-notes.git/issues"
   },
-  "homepage": "https://github.com/rek/grammar-notes.git"
+  "homepage": "https://github.com/rek/grammar-notes.git",
+  "devDependencies": {
+    "gulp-mocha": "^2.2.0"
+  }
 }
