@@ -1,9 +1,10 @@
 import chai from 'chai';
 
 describe('TESTING -', function() {
-	var expect  = chai.expect;
+	var expect = chai.expect;
 
 	it('should be an object', function() {
-		expect({}).to.be.an.object;
+		expect(true).to.be.true;
+		// expect({}).to.be.an.object;
 	});
 });
