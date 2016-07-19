@@ -1,8 +1,8 @@
 var gulp = require('gulp');
+var mocha = require('./mocha.js');
 
 module.exports = function() {
-
-	return gulp
+	return mocha()
 };
 
-module.exports.dependencies = ['build', 'mocha'];
+module.exports.dependencies = ['build'];

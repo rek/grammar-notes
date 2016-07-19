@@ -1,10 +1,9 @@
 var gulp = require('gulp');
+var build = require('./build.js');
+var watch = require('./watch.js');
 
 module.exports = function() {
-
-	return gulp
-		// .watch(this.opts.pkg.paths.srcClient + '/*.html', ['copy:html'])
-		// .watch(this.opts.pkg.paths.srcClient + '/*.js', ['babel'])
+	return build().watch()
 };
 
-// module.exports.dependencies = ['clean'];
+module.exports.dependencies = ['clean'];
