@@ -59,7 +59,7 @@ var initDb = function(callback) {
 	//   });
 };
 
-app.set('views', __dirname + '/client');
+app.set('views', __dirname + '/../client');
 
 app.get('/', function(req, res) {
 	// try to initialize the db on every request if it's not already
