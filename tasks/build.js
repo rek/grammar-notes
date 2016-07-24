@@ -4,4 +4,4 @@ module.exports = function() {
 	return gulp
 };
 
-module.exports.dependencies = ['clean', 'copy:html', 'babel'];
+module.exports.dependencies = ['clean', 'copy:html', 'babel:client'];

@@ -12,7 +12,6 @@
     "serverJs": "src/server/*.js",
     "srcClient": "src/client",
     "srcServer": "src/server",
-
     "distClient": "dist/client",
     "distServer": "dist/server",
     "dist": "dist"
