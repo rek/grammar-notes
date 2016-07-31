@@ -36,9 +36,9 @@ gulp.task('clean', function() {
 });
 
 gulp.task('build', ['js', 'html'], function() {
-	return gulp.src(pkg.paths.srcClient + '/**/*.js')
-		.pipe(plugins.babel({
-			presets: ['es2015']
-		}))
-		.pipe(gulp.dest(pkg.paths.distClient))
+});
+
+gulp.task('watch', function() {
+  gulp.watch(pkg.paths.srcClient + '/*.js', ['js']);
+  gulp.watch(pkg.paths.srcServer + '/*.js', ['js']);
 });
