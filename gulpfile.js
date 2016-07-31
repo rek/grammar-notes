@@ -8,34 +8,30 @@ var gulp = require('gulp'),
 // 	dir: 'tasks'
 // });
 
-gulp.task('html', function() {
+gulp.task('html', ['clean'], function() {
 	return gulp.src(pkg.paths.srcClient + '/*.html')
 		.pipe(gulp.dest(pkg.paths.distClient))
 })
 
-gulp.task('scripts', function() {
+gulp.task('test', ['clean'], function() {
+	return gulp.src(pkg.paths.srcClient + '/**/*.js')
+		.pipe(plugins.babel({
+			presets: ['es2015']
+		}))
+		.pipe(gulp.dest(pkg.paths.distClient))
+		.pipe(plugins.mocha({reporter: 'nyan'}))
 })
 
 gulp.task('clean', function() {
 	return gulp.src(pkg.paths.distClient)
 		.pipe(plugins.clean({force: true}))
 		.pipe(gulp.dest(pkg.paths.srcClient))
-	// .pipe(autoprefixer('last 2 version'))
-	// .pipe(gulp.dest('dist/assets/css'))
-	// .pipe(rename({suffix: '.min'}))
-	// .pipe(cssnano())
-	// .pipe(gulp.dest('dist/assets/css'))
-	// .pipe(notify({ message: 'Styles task complete' }));
 });
 
-gulp.task('test', ['clean'], function() {
-	// all concurrent
-    // gulp.start('styles', 'scripts', 'images');
-    gulp.start('scripts', 'html');
+gulp.task('build', ['clean', 'html'], function() {
+	return gulp.src(pkg.paths.srcClient + '/**/*.js')
+		.pipe(plugins.babel({
+			presets: ['es2015']
+		}))
+		.pipe(gulp.dest(pkg.paths.distClient))
 });
-
-// Tasks are in `tasks/`
-// require('gulp-task-loader')('tasks');
-
-// gulp.watch(pkg.paths.srcClient + '/*.html', ['copy:html']);
-// gulp.watch(allFiles, ['copy:all']);
