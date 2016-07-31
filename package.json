@@ -11,7 +11,8 @@
     "srcClient": "src/client",
     "srcServer": "src/server",
     "distClient": "dist/client",
-    "distServer": "dist/server"
+    "distServer": "dist/server",
+    "dist": "dist"
   },
   "options": {
     "test": true

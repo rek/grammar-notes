@@ -19,16 +19,15 @@ gulp.task('js', ['clean'], function() {
 		.pipe(plugins.babel({
 			presets: ['es2015']
 		}))
-		.pipe(gulp.dest(pkg.paths.srcServer))
+		.pipe(gulp.dest(pkg.paths.distServer))
 
 	return merge(client, server);
 })
 
 gulp.task('test', ['js'], function() {
-	return gulp.src(pkg.paths.distClient + '/**/test/*.js')
+	return gulp.src(pkg.paths.dist + '/**/test/*.js')
 		.pipe(plugins.mocha({reporter: 'nyan'}))
 })
-
 
 gulp.task('clean', function() {
 	return gulp.src(pkg.paths.distClient)
@@ -36,7 +35,7 @@ gulp.task('clean', function() {
 		.pipe(gulp.dest(pkg.paths.srcClient))
 });
 
-gulp.task('build', ['clean', 'html'], function() {
+gulp.task('build', ['js', 'html'], function() {
 	return gulp.src(pkg.paths.srcClient + '/**/*.js')
 		.pipe(plugins.babel({
 			presets: ['es2015']
