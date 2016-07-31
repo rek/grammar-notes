@@ -2,12 +2,6 @@ var gulp = require('gulp'),
 	pkg = require('./package.json'),
 	plugins = require('gulp-load-plugins')();
 
-// require('gulp-task-loader')({
-// 	pkg: pkg,
-// 	dest: 'dist',
-// 	dir: 'tasks'
-// });
-
 gulp.task('html', ['clean'], function() {
 	return gulp.src(pkg.paths.srcClient + '/*.html')
 		.pipe(gulp.dest(pkg.paths.distClient))
