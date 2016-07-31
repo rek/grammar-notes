@@ -15,3 +15,10 @@ To help with note taking when writing a grammar.
     $ npm install
     $ gulp build
 ```
+
+## To test:
+
+```
+    $ npm install
+    $ gulp test
+```

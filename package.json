@@ -50,7 +50,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-clean": "^0.3.2",
     "gulp-copy": "0.0.2",
-    "gulp-load-tasks": "^0.8.4",
+    "gulp-load-plugins": "^1.2.4",
     "gulp-mocha": "^2.2.0",
     "gulp-newer": "^1.2.0",
     "gulp-task-loader": "^1.4.4",
