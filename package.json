@@ -8,20 +8,17 @@
     "npm": "*"
   },
   "paths": {
-    "clientJs": "src/client/*.js",
-    "serverJs": "src/server/*.js",
     "srcClient": "src/client",
     "srcServer": "src/server",
     "distClient": "dist/client",
-    "distServer": "dist/server",
-    "dist": "dist"
+    "distServer": "dist/server"
   },
   "options": {
     "test": true
   },
   "scripts": {
     "start": "node server.js",
-    "test": "IP=0.0.0.0 PORT=3030 mocha --timeout 5000 tests/*_test.js"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -55,6 +52,6 @@
     "gulp-newer": "^1.2.0",
     "gulp-task-loader": "^1.4.4",
     "gulp-watch": "^4.3.8",
-    "merge2": "^1.0.2"
+    "merge-stream": "^1.0.0"
   }
 }

@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
 	pkg = require('./package.json'),
+	merge = require('merge-stream'),
 	plugins = require('gulp-load-plugins')();
 
 gulp.task('html', ['clean'], function() {
@@ -7,14 +8,27 @@ gulp.task('html', ['clean'], function() {
 		.pipe(gulp.dest(pkg.paths.distClient))
 })
 
-gulp.task('test', ['clean'], function() {
-	return gulp.src(pkg.paths.srcClient + '/**/*.js')
+gulp.task('js', ['clean'], function() {
+	var client = gulp.src(pkg.paths.srcClient + '/**/*.js')
 		.pipe(plugins.babel({
 			presets: ['es2015']
 		}))
 		.pipe(gulp.dest(pkg.paths.distClient))
+
+	var server = gulp.src(pkg.paths.srcServer + '/**/*.js')
+		.pipe(plugins.babel({
+			presets: ['es2015']
+		}))
+		.pipe(gulp.dest(pkg.paths.srcServer))
+
+	return merge(client, server);
+})
+
+gulp.task('test', ['js'], function() {
+	return gulp.src(pkg.paths.distClient + '/**/test/*.js')
 		.pipe(plugins.mocha({reporter: 'nyan'}))
 })
+
 
 gulp.task('clean', function() {
 	return gulp.src(pkg.paths.distClient)
