@@ -8,6 +8,7 @@
     "npm": "*"
   },
   "paths": {
+    "bower": "bower_components",
     "srcClient": "src/client",
     "srcServer": "src/server",
     "distClient": "dist/client",
