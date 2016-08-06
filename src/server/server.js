@@ -1,67 +1,30 @@
 'use strict';
 
-var express = require('express'),
-    fs = require('fs'),
-    app = express(),
-    eps = require('ejs'),
-    morgan = require('morgan');
+import pg from 'pg'
+import express from 'express'
+import fs from 'fs'
+import eps from 'ejs'
+import morgan from 'morgan'
 
 Object.assign = require('object-assign');
+
+const port = process.env.PORT || 8080,
+    ip = process.env.IP || '0.0.0.0';
+
+let db = null,
+	app = express(),
+    dbDetails = new Object();
+
+let initDb = function initDb(callback) {
+
+};
 
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'));
 
-var port = process.env.PORT || 8080,
-    ip = process.env.IP || '0.0.0.0';
-
-//     mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
-//     mongoURLLabel = "";
-
-
-// if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
-//   var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
-//       mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
-//       mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
-//       mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
-//       mongoPassword = process.env[mongoServiceName + '_PASSWORD']
-//       mongoUser = process.env[mongoServiceName + '_USER'];
-
-//   if (mongoHost && mongoPort && mongoDatabase) {
-//     mongoURLLabel = mongoURL = 'mongodb://';
-//     if (mongoUser && mongoPassword) {
-//       mongoURL += mongoUser + ':' + mongoPassword + '@';
-//     }
-//     // Provide UI label that excludes user id and pw
-//     mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
-//     mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
-
-//   }
-// }
-var db = null,
-    dbDetails = new Object();
-
-var initDb = function initDb(callback) {
-	//   if (mongoURL == null) return;
-
-	//   var mongodb = require('mongodb');
-	//   if (mongodb == null) return;
-
-	//   mongodb.connect(mongoURL, function(err, conn) {
-	//     if (err) {
-	//       callback(err);
-	//       return;
-	//     }
-
-	//     db = conn;
-	//     dbDetails.databaseName = db.databaseName;
-	//     dbDetails.url = mongoURLLabel;
-	//     dbDetails.type = 'MongoDB';
-
-	//     console.log('Connected to MongoDB at: %s', mongoURL);
-	//   });
-};
-
 app.set('views', __dirname + '/../client');
+
+app.use('/styles', express.static(__dirname + '/../client/styles'));
 
 app.get('/', function (req, res) {
 	// try to initialize the db on every request if it's not already
@@ -71,7 +34,7 @@ app.get('/', function (req, res) {
 	}
 
 	if (db) {
-		var col = db.collection('counts');
+		let col = db.collection('counts');
 		// Create a document with request IP and current time of request
 		col.insert({
 			ip: req.ip,
@@ -88,6 +51,18 @@ app.get('/', function (req, res) {
 		res.render('index.html', { pageCountMessage: null });
 	}
 });
+
+app.get('/db', function (request, response) {
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query('SELECT * FROM grammar', function(err, result) {
+      done();
+      if (err)
+       { console.error(err); response.send("Error " + err); }
+      else
+       { response.render('pages/db', {results: result.rows} ); }
+    });
+  });
+})
 
 app.get('/pagecount', function (req, res) {
 	// try to initialize the db on every request if it's not already
