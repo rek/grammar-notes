@@ -6,6 +6,7 @@ import fs from 'fs'
 import eps from 'ejs'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
+import setupDB from './setupDb.js'
 
 Object.assign = require('object-assign')
 
@@ -117,6 +118,21 @@ app.get('/db', function (request, response) {
 *
 */
 app.get('/api/test', function(req, res) {
+
+		// Create a document with request IP and current time of request
+		// 	ip: req.ip,
+
+	pool.query('INSERT INTO visit (date, ip) VALUES ($1, $2)', [new Date(), req.ip], function(err) {
+		if (err) return handleError(err);
+
+		// get the total number of visits today (including the current visit)
+		pool.query('SELECT COUNT(date) AS count FROM visit', function(err, result) {
+			// handle an error from the query
+			if (err) return handleError(err);
+			res.writeHead(200, {'content-type': 'text/plain'});
+			res.end('You are visitor number ' + result.rows[0].count);
+		});
+	});
 })
 
 // error handling
@@ -135,21 +151,33 @@ app.use(function(err, req, res, next) {
 // 	res.status(code || 500).json({'error': message})
 // }
 
+let handleError = (err) => {
+	console.log(e.message, e.stack)
+	res.writeHead(500, {'content-type': 'text/plain'});
+	res.end('An error occurred');
+};
+
 initDb(function (err) {
 	console.log('Error connecting to PG. Message:\n' + err)
 })
 
-pool
-	.query('CREATE TABLE IF NOT EXISTS visit (date timestamptz)')
-	.then(() => {
-		console.log('NICE!');
-		app.listen(port, ip)
-	})
-	.catch((err) => {
-		console.log('err', err);
-	})
+let runServer = () => {
+	setupDB(pool)
+		.then(() => {
+			console.log('DB Initialized, starting server.');
+			app.listen(port, ip)
+			console.log('Server running on http://%s:%s', ip, port)
+		})
+		.catch((err) => {
+			console.log('err', err);
 
+			// if error is not catastropic, restart:
+			if (false) {
+				runServer()
+			}
+		})
+}
 
-console.log('Server running on http://%s:%s', ip, port)
+runServer()
 
 export default app
