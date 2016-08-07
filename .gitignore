@@ -39,3 +39,6 @@ bower_components
 
 # built code
 dist
+
+# env creds
+.env
