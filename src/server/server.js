@@ -11,12 +11,12 @@ import setupDB from './setupDb.js'
 Object.assign = require('object-assign')
 
 const port = process.env.PORT || 8080,
-    ip = process.env.IP || '0.0.0.0'
+	ip = process.env.IP || '0.0.0.0'
 
 let db = null,
 	app = express(),
 	Pool = require('pg').Pool,
-    dbDetails = new Object()
+	dbDetails = new Object()
 
 app.engine('html', require('ejs').renderFile)
 app.use(morgan('combined'))
@@ -45,6 +45,10 @@ app.get('/', function (req, res) {
 * API
 *
 */
+app.get('/health', function (req, res) {
+	res.send('OK');
+});
+
 app.get('/api/test', function(req, res) {
 
 	// Create a log with request IP and current time of request

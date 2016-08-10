@@ -12,10 +12,24 @@
 		<link href="styles/bootstrap-theme.css" rel="stylesheet">
 		<link href="styles/styles.css" rel="stylesheet">
 
-		<script></script>
+        <script src="jspm_packages/system.js"></script>
+        <script src="config.js"></script>
+        <script>
+            var readyForMainLoad;
+            System.trace = true;
+            readyForMainLoad = System.import('systemjs-hot-reloader').then(function(HotReloader) {
+                hr = new HotReloader.default('http://localhost:9111');  // chokidar-socket-emitter port
+            });
+
+            Promise.resolve(readyForMainLoad).then(function() {
+                System.import('src/main');
+            });
+        </script>
 	</head>
 
 	<body>
+        <div id="app"></div>
+
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
