@@ -9,7 +9,7 @@ gulp.task('html', function() {
 })
 
 gulp.task('styles', function() {
-	var bootstrap = gulp.src(pkg.paths.bower + '/bootstrap/dist/css/bootstrap.min.css')
+	var bootstrap = gulp.src(pkg.paths.bower + '/bootstrap/dist/css/bootstrap*.css')
 		.pipe(gulp.dest(pkg.paths.distClient + '/styles'))
 
 	var styles = gulp.src(pkg.paths.srcClient + '/styles/*.css')
