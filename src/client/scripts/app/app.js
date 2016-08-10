@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import AppReducer from './reducers/AppReducers';
-import TestPageReducer from './reducers/TestPageReducer';
-import AppRouter from './components/AppRouter';
+import AppReducer from './reducers/reducers';
+import TestPageReducer from './reducers/test';
+import AppRouter from './components/router';
 
 var devTools = window.devToolsExtension ? window.devToolsExtension() : f => f;
 

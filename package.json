@@ -68,16 +68,9 @@
   },
   "jspm": {
     "dependencies": {
-      "enzyme": "npm:enzyme@^2.0.0",
-      "fetch": "npm:whatwg-fetch@^0.11.0",
-      "fetch-stream": "npm:fetch-stream@^0.6.4",
-      "isomorphic-fetch": "npm:isomorphic-fetch@^2.2.1",
       "lodash": "npm:lodash@^4.0.0",
-      "mocha-jsdom": "npm:mocha-jsdom@^1.0.0",
       "moment": "npm:moment@^2.11.1",
       "node-uuid": "npm:node-uuid@^1.4.7",
-      "oauth2-client-js": "npm:oauth2-client-js@0.0.15",
-      "papaparse": "npm:papaparse@^4.1.2",
       "react": "npm:react@^0.14.6",
       "react-addons-test-utils": "npm:react-addons-test-utils@^0.14.7",
       "react-bootstrap": "npm:react-bootstrap@^0.28.2",
@@ -93,8 +86,7 @@
       "redux-mock-store": "npm:redux-mock-store@^0.0.6",
       "redux-thunk": "npm:redux-thunk@^1.0.3",
       "systemjs": "npm:systemjs@^0.19.20",
-      "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@^0.5.5",
-      "whatwg-fetch": "npm:whatwg-fetch@^0.11.0"
+      "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@^0.5.5"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
