@@ -11,6 +11,11 @@ let setup = (pool) => {
 				date timestamptz
 			)`)
 		})
+		.then(() => {
+			return pool.query(`CREATE TABLE IF NOT EXISTS visit3 (
+				date timestamptz
+			)`)
+		})
 }
 
 export default setup
