@@ -25,6 +25,8 @@ app.use(morgan('combined'))
 app.set('views', __dirname + '/../client')
 
 app.use('/styles', express.static(__dirname + '/../client/styles'))
+app.use('/config.js', express.static(__dirname + '/../../config.js'))
+app.use('/jspm_packages', express.static(__dirname + '/../../jspm_packages'))
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -83,6 +85,11 @@ let runServer = () => {
 	setupDB(pool)
 		.then(() => {
 			console.log('DB Initialized, starting server.')
+
+			if (devMode) {
+				require('chokidar-socket-emitter')({port: 9111, path: 'src'});
+			}
+
 			app.listen(port, ip)
 			console.log('Server running on http://%s:%s', ip, port)
 		})

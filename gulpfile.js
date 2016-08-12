@@ -19,25 +19,23 @@ gulp.task('styles', function() {
 })
 
 gulp.task('jss', function() {
-	return gulp.src(pkg.paths.jspm)
-	// let client = gulp.src(pkg.paths.srcClient + '/**/*.js')
-	// 	.pipe(plugins.babel({
-	// 		presets: ['es2015']
-	// 	}))
-		.pipe(gulp.dest(pkg.paths.distClient + '/scripts'))
+	return gulp.src(pkg.paths.jspm + '/*')
+		.pipe(gulp.dest(pkg.paths.distClient + '/scripts/' + pkg.paths.jspm))
 })
 
 gulp.task('js', function() {
 	let client = gulp.src(pkg.paths.srcClient + '/scripts/app/app.js')
-        .pipe(plugins.jspm({verbose: true}))
+        .pipe(plugins.jspm({verbose: false}))
         .pipe(gulp.dest(pkg.paths.distClient + '/scripts'));
 
-	let jspmFiles = gulp.src(pkg.paths.src + '/jspm_packages')
+	let jspmFiles = gulp.src(pkg.paths.jspm + '/*')
+		.pipe(gulp.dest(pkg.paths.distClient + '/scripts/' + pkg.paths.jspm))
+		.pipe(gulp.dest(pkg.paths.distClient + '/scripts'))
 	// let client = gulp.src(pkg.paths.srcClient + '/**/*.js')
 	// 	.pipe(plugins.babel({
 	// 		presets: ['es2015']
 	// 	}))
-		.pipe(gulp.dest(pkg.paths.distClient + '/scripts'))
+		// .pipe(gulp.dest(pkg.paths.distClient + '/scripts'))
 
 	let server = gulp.src(pkg.paths.srcServer + '/**/*.js')
 		.pipe(plugins.babel({
