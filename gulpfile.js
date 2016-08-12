@@ -1,4 +1,4 @@
-var gulp = require('gulp'),
+let gulp = require('gulp'),
 	pkg = require('./package.json'),
 	merge = require('merge-stream'),
 	plugins = require('gulp-load-plugins')();
@@ -9,29 +9,43 @@ gulp.task('html', function() {
 })
 
 gulp.task('styles', function() {
-	var bootstrap = gulp.src(pkg.paths.bower + '/bootstrap/dist/css/bootstrap*.css')
+	let bootstrap = gulp.src(pkg.paths.bower + '/bootstrap/dist/css/bootstrap*.css')
 		.pipe(gulp.dest(pkg.paths.distClient + '/styles'))
 
-	var styles = gulp.src(pkg.paths.srcClient + '/styles/*.css')
+	let styles = gulp.src(pkg.paths.srcClient + '/styles/*.css')
 		.pipe(gulp.dest(pkg.paths.distClient + '/styles'))
 
 	return merge(bootstrap, styles);
 })
 
-gulp.task('js', function() {
-	var client = gulp.src(pkg.paths.srcClient + '/**/*.js')
-		.pipe(plugins.babel({
-			presets: ['es2015']
-		}))
-		.pipe(gulp.dest(pkg.paths.distClient))
+gulp.task('jss', function() {
+	return gulp.src(pkg.paths.src + '/jspm_packages')
+	// let client = gulp.src(pkg.paths.srcClient + '/**/*.js')
+	// 	.pipe(plugins.babel({
+	// 		presets: ['es2015']
+	// 	}))
+		.pipe(gulp.dest(pkg.paths.distClient + '/scripts'))
+})
 
-	var server = gulp.src(pkg.paths.srcServer + '/**/*.js')
+gulp.task('js', function() {
+	let client = gulp.src(pkg.paths.srcClient + '/scripts/app/app.js')
+        .pipe(plugins.jspm({verbose: true}))
+        .pipe(gulp.dest(pkg.paths.distClient + '/scripts'));
+
+	let jspmFiles = gulp.src(pkg.paths.src + '/jspm_packages')
+	// let client = gulp.src(pkg.paths.srcClient + '/**/*.js')
+	// 	.pipe(plugins.babel({
+	// 		presets: ['es2015']
+	// 	}))
+		.pipe(gulp.dest(pkg.paths.distClient + '/scripts'))
+
+	let server = gulp.src(pkg.paths.srcServer + '/**/*.js')
 		.pipe(plugins.babel({
 			presets: ['es2015']
 		}))
 		.pipe(gulp.dest(pkg.paths.distServer))
 
-	return merge(client, server);
+	return merge(client, server, jspmFiles);
 })
 
 gulp.task('test', ['js'], function() {
@@ -45,7 +59,7 @@ gulp.task('clean', function() {
 		.pipe(gulp.dest(pkg.paths.srcClient))
 });
 
-gulp.task('build', ['js', 'html', 'styles'], function() {
+gulp.task('build', ['html', 'js', 'styles'], function() {
 });
 
 gulp.task('watch', function() {

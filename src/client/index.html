@@ -14,6 +14,7 @@
 
         <script src="jspm_packages/system.js"></script>
         <script src="config.js"></script>
+
         <script>
             var readyForMainLoad;
             System.trace = true;
@@ -22,7 +23,7 @@
             });
 
             Promise.resolve(readyForMainLoad).then(function() {
-                System.import('src/main');
+                System.import('src/scripts/app/app');
             });
         </script>
 	</head>
