@@ -19,7 +19,7 @@ gulp.task('styles', function() {
 })
 
 gulp.task('jss', function() {
-	return gulp.src(pkg.paths.src + '/jspm_packages')
+	return gulp.src(pkg.paths.jspm)
 	// let client = gulp.src(pkg.paths.srcClient + '/**/*.js')
 	// 	.pipe(plugins.babel({
 	// 		presets: ['es2015']
