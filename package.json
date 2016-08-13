@@ -36,6 +36,7 @@
   },
   "homepage": "https://github.com/rek/grammar-notes.git",
   "dependencies": {
+    "aws-sdk": "^2.5.0",
     "body-parser": "^1.15.2",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
