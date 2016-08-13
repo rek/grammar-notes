@@ -7,6 +7,7 @@ import eps from 'ejs'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import setupDB from './setupDb.js'
+import itemEndpoints from './items/endpoints.js'
 
 Object.assign = require('object-assign')
 
@@ -69,13 +70,13 @@ app.get('/api/test', function(req, res) {
 })
 
 // error handling
-app.use(function(err, req, res, next) {
-	console.error(err.stack)
+app.use(function(error, req, res, next) {
+	console.error(error.stack)
 	res.status(500).send('Something bad happened!')
 })
 
-let handleError = (err) => {
-	console.log(e.message, e.stack)
+let handleError = (error, res) => {
+	console.log(error.message, error.stack)
 	res.writeHead(500, {'content-type': 'text/plain'})
 	// res.status(code || 500).json({'error': message})
 	res.end('An error occurred')
@@ -90,11 +91,13 @@ let runServer = () => {
 				require('chokidar-socket-emitter')({port: 9111, path: 'src'});
 			}
 
+			itemEndpoints(app, pool, handleError)
+
 			app.listen(port, ip)
 			console.log('Server running on http://%s:%s', ip, port)
 		})
-		.catch((err) => {
-			console.log('err', err)
+		.catch((error) => {
+			console.log('Error:', error)
 
 			// if error is not catastropic, restart:
 			if (false) {

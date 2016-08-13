@@ -1,17 +1,16 @@
-
 let endpoints = (app, pool, handleError) => {
 
 	app.get('/api/items', function(req, res) {
 		pool.query('SELECT * FROM items', function(err, result) {
 			// handle an error from the query
 			if (err) {
-				return handleError(err)
+				return handleError(err, res)
 			}
 
 			res.writeHead(200, {'content-type': 'application/json'})
 			res.end(result.rows)
 		})
-	}
+	})
 
 	app.get('/api/test', function(req, res) {
 
