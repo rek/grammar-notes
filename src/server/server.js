@@ -64,6 +64,9 @@ let handleError = (error, res) => {
 	res.writeHead(500, {'content-type': 'text/plain'})
 	// res.status(code || 500).json({'error': message})
 	res.end('An error occurred')
+
+    // res.statusCode = 400;
+    // return res.send('Error 400: Post syntax incorrect.');
 }
 
 let runServer = () => {

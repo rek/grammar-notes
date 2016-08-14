@@ -21,6 +21,25 @@ let endpoints = (app, pool, handleError) => {
 		})
 	})
 
+	app.post('/api/items', function(req, res) {
+		let validItems = {}
+console.log('res,', res);
+console.log('res,', res.params);
+		if (res) {
+
+		}
+
+		let validKeys = _.keys(validItems).join(', '),
+			countKeys = _.map(a, (i, k) => return '$' + (k + 1)),
+			pickedItems = _.pick(validKeys)
+ console.log('validKeys', validKeys);
+ console.log('countKeys', countKeys);
+ console.log('pickedItems', pickedItems);
+		pool.query(`INSERT INTO item (${validKeys}) VALUES (${countKeys})`, pickedItems, (err) => {
+			res.json({success: true});
+		})
+	})
+
 	app.post('/api/visit', function(req, res) {
 		// Create a log with request IP and current time of request
 		pool.query('INSERT INTO visit (date, ip) VALUES ($1, $2)', [new Date(), req.ip], function(err) {
