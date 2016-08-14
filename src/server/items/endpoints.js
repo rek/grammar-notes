@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 let endpoints = (app, pool, handleError) => {
 
 	app.get('/api/items', function(req, res) {
@@ -23,18 +25,24 @@ let endpoints = (app, pool, handleError) => {
 
 	app.post('/api/items', function(req, res) {
 		let validItems = {}
-console.log('res,', res);
-console.log('res,', res.params);
-		if (res) {
 
+		console.log('Raw:', req.body);
+
+		if (req.body.nice) {
+			validItems.test1 = 'test1'
+		}
+
+		if (req.body.woah) {
+			validItems.test2 = 'test2'
 		}
 
 		let validKeys = _.keys(validItems).join(', '),
-			countKeys = _.map(a, (i, k) => return '$' + (k + 1)),
+			countKeys = _.map(validItems, (i, k) => '$' + (k + 1)),
 			pickedItems = _.pick(validKeys)
  console.log('validKeys', validKeys);
  console.log('countKeys', countKeys);
  console.log('pickedItems', pickedItems);
+ console.log('qery:', `INSERT INTO item (${validKeys}) VALUES (${countKeys})`);
 		pool.query(`INSERT INTO item (${validKeys}) VALUES (${countKeys})`, pickedItems, (err) => {
 			res.json({success: true});
 		})
