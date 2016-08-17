@@ -25,8 +25,8 @@ gulp.task('jss', function() {
 
 gulp.task('js', function() {
 	let client = gulp.src(pkg.paths.srcClient + '/scripts/app/app.js')
-        .pipe(plugins.jspm({verbose: false}))
-        .pipe(gulp.dest(pkg.paths.distClient + '/scripts'));
+		.pipe(plugins.jspm({verbose: false}))
+		.pipe(gulp.dest(pkg.paths.distClient + '/scripts'));
 
 	let jspmFiles = gulp.src(pkg.paths.jspm + '/*')
 		.pipe(gulp.dest(pkg.paths.distClient + '/scripts/' + pkg.paths.jspm))
@@ -60,9 +60,28 @@ gulp.task('clean', function() {
 gulp.task('build', ['html', 'js', 'styles'], function() {
 });
 
-gulp.task('watch', function() {
-  gulp.watch(pkg.paths.srcClient + '/styles/*.css', ['styles']);
-  gulp.watch(pkg.paths.srcClient + '/*.html', ['html']);
-  gulp.watch(pkg.paths.srcClient + '/*.js', ['js']);
-  gulp.watch(pkg.paths.srcServer + '/*.js', ['js']);
+gulp.task('run', ['build'], function() {
+
 });
+
+gulp.task('watch', function() {
+	gulp.watch(pkg.paths.srcClient + '/styles/*.css', ['styles']);
+	gulp.watch(pkg.paths.srcClient + '/*.html', ['html']);
+	gulp.watch(pkg.paths.srcClient + '/*.js', ['js']);
+	gulp.watch(pkg.paths.srcServer + '/*.js', ['js']);
+});
+
+gulp.task('start', function () {
+	plugins.env({
+		file: '.env',
+		type: 'ini'
+	})
+
+	plugins.nodemon({
+		script: pkg.paths.distServer + '/server.js',
+		ext: 'js html',
+		env: {
+			'NODE_ENV': 'development'
+		}
+	})
+})

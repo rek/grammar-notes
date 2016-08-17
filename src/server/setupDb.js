@@ -7,40 +7,62 @@ let setup = (pool) => {
 			ip varchar(20)
 		)`)
 		.then(() => {
+				// id bigserial primary key,
+			return pool.query(`CREATE TABLE IF NOT EXISTS itemType (
+				it_title varchar(40) NOT NULL UNIQUE,
+				date timestamptz
+			)`)
+		})
+		.then(() => {
 			return pool.query(`CREATE TABLE IF NOT EXISTS item (
-				id bigserial primary key,
-				title varchar(40) NOT NULL,
+				item_id serial PRIMARY KEY,
+				item_title varchar(40) NOT NULL,
 				content text,
 				created_at timestamptz,
-				updated_at timestamptz
+				updated_at timestamptz,
+				constraint fk_type
+					foreign key (item_type)
+					REFERENCES itemType (it_title)
 			)`)
 		})
 		.then(() => {
 				// id bigserial primary key,
-			return pool.query(`CREATE TABLE IF NOT EXISTS itemType (
-				title varchar(40) NOT NULL UNIQUE,
+			return pool.query(`CREATE TABLE IF NOT EXISTS subItemType (
+				sit_title varchar(40) NOT NULL UNIQUE,
 				date timestamptz
 			)`)
 		})
 		.then(() => {
 				// id bigserial primary key,
 			return pool.query(`CREATE TABLE IF NOT EXISTS subItem (
-				title varchar(40) NOT NULL,
+				sub_item_id serial PRIMARY KEY,
+				sub_item_title varchar(40) NOT NULL,
 				content text,
 				created_at timestamptz,
-				updated_at timestamptz
-			)`)
-		})
-		.then(() => {
-				// id bigserial primary key,
-			return pool.query(`CREATE TABLE IF NOT EXISTS subItemType (
-				title varchar(40) NOT NULL UNIQUE,
-				date timestamptz
+				updated_at timestamptz,
+				constraint fk_type
+					foreign key (sub_item_type)
+					REFERENCES subItemType (sit_title)
 			)`)
 		})
 		.then(() => {
 			return pool.query(`CREATE TABLE IF NOT EXISTS tag (
-				title varchar(40) NOT NULL UNIQUE
+				tag_id serial PRIMARY KEY,
+				tag varchar(40) NOT NULL UNIQUE
+			)`)
+		})
+		.then(() => {
+			return pool.query(`CREATE TABLE IF NOT EXISTS item_tag (
+				tag_id int REFERENCES tag (tag_id) ON UPDATE CASCADE ON DELETE CASCADE,
+				item_id int REFERENCES item (item_id) ON UPDATE CASCADE,
+				CONSTRAINT item_tag_pk PRIMARY KEY (tag_id, item_id)
+			)`)
+		})
+		.then(() => {
+			return pool.query(`CREATE TABLE IF NOT EXISTS sub_item_tag (
+				tag_id int REFERENCES tag (tag_id) ON UPDATE CASCADE ON DELETE CASCADE,
+				sub_item_id int REFERENCES subItem (sub_item_id) ON UPDATE CASCADE,
+				CONSTRAINT sub_item_tag_pk PRIMARY KEY (tag_id, sub_item_id)
 			)`)
 		})
 		.then(() => {
