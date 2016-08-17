@@ -2,31 +2,22 @@ import _ from 'lodash'
 import {inserter} from '../utils'
 
 let endpoints = (app, pool, handleError) => {
+	let table = 'tag'
 
 	app.get('/api/tags', function(req, res) {
-		pool.query('SELECT * FROM tag', function(err, result) {
+		pool.query(`SELECT * FROM ${table}`, function(err, result) {
 			// handle an error from the query
 			if (err) {
 				return handleError(err, res)
 			}
 
-			console.log('Result:', result.rows);
-			// working:
-			// res.setHeader('Content-Type', 'application/json');
-			// res.send(JSON.stringify(result.rows));
-			// working:
+			// console.log('Result:', result.rows);
 			res.json(result.rows);
-
-			// not working:
-			// res.writeHead(200, {'content-type': 'application/json'})
-			// res.send(JSON.stringify(result.rows)) // JSON string on GET
-			// res.end()
 		})
 	})
 
 	app.post('/api/tags', function(req, res) {
-		let table = 'tag',
-			validItems = {}
+		let validItems = {}
 
 		// console.log('Raw:', req.body);
 

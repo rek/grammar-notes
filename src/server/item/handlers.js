@@ -2,9 +2,10 @@ import _ from 'lodash'
 import {inserter} from '../utils'
 
 let endpoints = (app, pool, handleError) => {
+	let table = 'item'
 
 	app.get('/api/items', function(req, res) {
-		pool.query('SELECT * FROM item', function(err, result) {
+		pool.query(`SELECT * FROM ${table}`, function(err, result) {
 			// handle an error from the query
 			if (err) {
 				return handleError(err, res)
@@ -29,8 +30,8 @@ let endpoints = (app, pool, handleError) => {
 
 		// console.log('Raw:', req.body);
 
+		// validation
 		if (_.isString(req.body.item_title) && req.body.item_title !== '') {
-
 			validItems.item_title = req.body.item_title
 		}
 
@@ -41,6 +42,10 @@ let endpoints = (app, pool, handleError) => {
 		let sql = inserter(table, validItems)
 
 		pool.query(sql.query, sql.data, (err) => {
+			if (err) {
+				return handleError(err, res)
+			}
+
 			res.json({success: true});
 		})
 	})
