@@ -49,7 +49,7 @@ gulp.task('js', function() {
 	return merge(client, server, jspmFiles);
 })
 
-gulp.task('test', ['js'], function() {
+gulp.task('test', ['build'], function() {
 	return gulp.src(pkg.paths.dist + '/**/test/*.js')
 		.pipe(plugins.mocha({reporter: 'nyan'}))
 })
@@ -75,7 +75,7 @@ gulp.task('watch', function() {
 	gulp.watch(pkg.paths.srcServer + '/**/*.js', ['js']);
 });
 
-gulp.task('start', ['watch'], function () {
+gulp.task('start', ['watch'], function() {
 	plugins.env({
 		file: '.env',
 		type: 'ini'
