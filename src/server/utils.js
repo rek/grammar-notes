@@ -1,15 +1,15 @@
 import _ from 'lodash'
 
-let inserter = (table, validItems) => {
-	let validKeys = _.keys(validItems).join(', '),
-		countKeys = _.reduce(validItems, (results, i) => {
+let inserter = (table, items) => {
+	let validKeys = _.keys(items).join(', '),
+		countKeys = _.reduce(items, (results) => {
 			results.push('$' + (results.length + 1))
 			return results
 		}, []).join(', '),
-		items = _.values(validItems)
+		data = _.values(items)
 
 	return {
-		items,
+		data,
 		query: `INSERT INTO ${table} (${validKeys}) VALUES (${countKeys})`,
 	}
 }

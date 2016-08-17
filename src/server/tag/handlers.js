@@ -37,7 +37,7 @@ let endpoints = (app, pool, handleError) => {
 
 		let sql = inserter(table, validItems)
 
-		pool.query(sql.query, sql.items, (err) => {
+		pool.query(sql.query, sql.data, (err) => {
 			if (err) {
 				// console.log('err.code', err.code);
 				// console.log('err', err);
