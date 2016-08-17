@@ -1,6 +1,4 @@
-
 let setup = (pool) => {
-
 	return pool
 		.query(`CREATE TABLE IF NOT EXISTS visit (
 			date timestamptz,
