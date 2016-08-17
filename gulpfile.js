@@ -25,10 +25,12 @@ gulp.task('jss', function() {
 
 gulp.task('js', function() {
 	let client = gulp.src(pkg.paths.srcClient + '/scripts/app/app.js')
+		.pipe(plugins.changed(pkg.paths.distClient + '/scripts'))
 		.pipe(plugins.jspm({verbose: false}))
 		.pipe(gulp.dest(pkg.paths.distClient + '/scripts'));
 
 	let jspmFiles = gulp.src(pkg.paths.jspm + '/*')
+		.pipe(plugins.changed(pkg.paths.distClient + '/scripts'))
 		.pipe(gulp.dest(pkg.paths.distClient + '/scripts/' + pkg.paths.jspm))
 		.pipe(gulp.dest(pkg.paths.distClient + '/scripts'))
 	// let client = gulp.src(pkg.paths.srcClient + '/**/*.js')
@@ -38,6 +40,7 @@ gulp.task('js', function() {
 		// .pipe(gulp.dest(pkg.paths.distClient + '/scripts'))
 
 	let server = gulp.src(pkg.paths.srcServer + '/**/*.js')
+		.pipe(plugins.changed(pkg.paths.distServer))
 		.pipe(plugins.babel({
 			presets: ['es2015']
 		}))
