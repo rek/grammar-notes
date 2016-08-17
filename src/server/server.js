@@ -8,6 +8,7 @@ import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import setupDB from './setupDb.js'
 import itemEndpoints from './items/endpoints.js'
+import tagEndpoints from './tag/handlers.js'
 
 Object.assign = require('object-assign')
 
@@ -79,6 +80,7 @@ let runServer = () => {
 			}
 
 			itemEndpoints(app, pool, handleError)
+			tagEndpoints(app, pool, handleError)
 
 			app.listen(port, ip)
 			console.log('Server running on http://%s:%s', ip, port)

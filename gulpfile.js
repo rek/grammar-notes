@@ -69,9 +69,10 @@ gulp.task('watch', function() {
 	gulp.watch(pkg.paths.srcClient + '/*.html', ['html']);
 	gulp.watch(pkg.paths.srcClient + '/*.js', ['js']);
 	gulp.watch(pkg.paths.srcServer + '/*.js', ['js']);
+	gulp.watch(pkg.paths.srcServer + '/**/*.js', ['js']);
 });
 
-gulp.task('start', function () {
+gulp.task('start', ['watch'], function () {
 	plugins.env({
 		file: '.env',
 		type: 'ini'
@@ -80,6 +81,7 @@ gulp.task('start', function () {
 	plugins.nodemon({
 		script: pkg.paths.distServer + '/server.js',
 		ext: 'js html',
+		delay: 3000,
 		env: {
 			'NODE_ENV': 'development'
 		}
