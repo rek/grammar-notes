@@ -18,7 +18,7 @@ gulp.task('styles', function() {
 	return merge(bootstrap, styles);
 })
 
-gulp.task('jss', function() {
+gulp.task('jspm', function() {
 	return gulp.src(pkg.paths.jspm + '/*')
 		.pipe(gulp.dest(pkg.paths.distClient + '/scripts/' + pkg.paths.jspm))
 })
@@ -26,7 +26,19 @@ gulp.task('jss', function() {
 gulp.task('js', function() {
 	let client = gulp.src(pkg.paths.srcClient + '/scripts/app/app.js')
 		.pipe(plugins.changed(pkg.paths.distClient + '/scripts'))
-		.pipe(plugins.jspm({verbose: false}))
+		.pipe(plugins.jspm({
+			verbose: false,
+			bundles: [
+				{
+					src: 'app',
+					dst: 'app.js'
+				}
+			],
+			// bundleOptions: {
+			// 	minify: true,
+			// 	mangle: true
+			// }
+		}))
 		.pipe(gulp.dest(pkg.paths.distClient + '/scripts'));
 
 	let jspmFiles = gulp.src(pkg.paths.jspm + '/*')
@@ -63,7 +75,7 @@ gulp.task('clean', function() {
 gulp.task('build', ['html', 'js', 'styles'], function() {
 });
 
-gulp.task('run', ['build'], function() {
+gulp.task('default', ['start'], function() {
 
 });
 
@@ -85,6 +97,10 @@ gulp.task('start', ['watch'], function() {
 		script: pkg.paths.distServer + '/server.js',
 		ext: 'js html',
 		delay: 3000,
+		watch: [
+			'src/server/*.js',
+			'src/server/**/*.js',
+		],
 		env: {
 			'NODE_ENV': 'development'
 		}

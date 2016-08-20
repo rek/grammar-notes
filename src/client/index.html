@@ -12,24 +12,37 @@
 		<link href="styles/bootstrap-theme.css" rel="stylesheet">
 		<link href="styles/styles.css" rel="stylesheet">
 
-        <script src="jspm_packages/system.js"></script>
-        <script src="config.js"></script>
+		<script src="jspm_packages/system.js"></script>
+		<script src="config.js"></script>
 
-        <script>
-            var readyForMainLoad;
-            System.trace = true;
-            readyForMainLoad = System.import('systemjs-hot-reloader').then(function(HotReloader) {
-                hr = new HotReloader.default('http://localhost:9111');  // chokidar-socket-emitter port
-            });
+		<script>
 
-            Promise.resolve(readyForMainLoad).then(function() {
-                System.import('src/scripts/app/app');
-            });
-        </script>
+// if (location.origin.match(/localhost/)) {
+//   System.trace = true
+//   System.import('systemjs-hot-reloader').then(function(HotReloader) {
+// 		new HotReloader.default('http://localhost:8090')  // chokidar-socket-emitter port
+//   })
+// }
+
+// System.import('scripts/app/app')
+// System.import('scripts/app.bundle')
+
+
+			var readyForMainLoad;
+			System.trace = true;
+			readyForMainLoad = System.import('systemjs-hot-reloader').then(function(HotReloader) {
+			    hr = new HotReloader.default('http://localhost:8090');  // chokidar-socket-emitter port
+			});
+
+			Promise.resolve(readyForMainLoad).then(function() {
+			    // System.import('scripts/app.bundle');
+			    System.import('scripts/app/app');
+			});
+		</script>
 	</head>
 
 	<body>
-        <div id="app"></div>
+		<div id="app"></div>
 
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container">

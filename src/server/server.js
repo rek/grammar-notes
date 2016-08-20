@@ -26,6 +26,7 @@ app.use(morgan('combined'))
 
 app.set('views', __dirname + '/../client')
 
+app.use('/scripts', express.static(__dirname + '/../../src/client/scripts'))
 app.use('/styles', express.static(__dirname + '/../client/styles'))
 app.use('/config.js', express.static(__dirname + '/../../config.js'))
 app.use('/jspm_packages', express.static(__dirname + '/../../jspm_packages'))
@@ -76,7 +77,7 @@ let runServer = () => {
 			console.log('DB Initialized, starting server.')
 
 			if (devMode) {
-				require('chokidar-socket-emitter')({port: 9111, path: 'src'});
+				require('chokidar-socket-emitter')({port: 8090, path: 'src'});
 			}
 
 			itemEndpoints(app, pool, handleError)
