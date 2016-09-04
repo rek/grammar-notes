@@ -2,14 +2,15 @@ import React from 'react';
 import {Router, Route, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 import ItemComponents from '../items/components';
-// import TestPage from './TestPage';
 
 export default class AppRouter extends React.Component {
     constructor() {
         super();
             // <Route path="test" component={TestPage}/>
-        this.routes = (<Route path="/" component={ItemComponents}>
-        </Route>);
+        this.routes = (
+            <Route path="/" component={ItemComponents}>
+            </Route>
+        );
     }
 
     componentWillMount() {
