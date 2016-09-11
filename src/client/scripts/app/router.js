@@ -3,15 +3,27 @@ import {Router, Route, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 
 import Home from './home';
+import Items from '../items/list';
 import ItemCreate from '../items/create';
+
+const requireAuth = (nextState, replace) => {
+    if (true) {
+    // if (!auth.isAdmin()) {
+        // Redirect to Home page if not an Admin
+        replace({pathname: '/'})
+    }
+}
 
 export default class AppRouter extends React.Component {
     constructor() {
         super();
 
+                // <Route path='/items/:id' component={ItemShow}></Route>
         this.routes = (
             <Route component={Home}>
-                <Route path='\/item\/create' component={ItemCreate}></Route>
+                <Route path='/admin' component={Items} onEnter={requireAuth}></Route>
+                <Route path='/items' component={Items}></Route>
+                <Route path='/items/create' component={ItemCreate}></Route>
             </Route>
         );
     }
