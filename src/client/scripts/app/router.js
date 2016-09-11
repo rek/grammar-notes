@@ -1,15 +1,17 @@
 import React from 'react';
 import {Router, Route, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
-import ItemComponents from '../items/components';
+
+import Home from './home';
+import ItemCreate from '../items/create';
 
 export default class AppRouter extends React.Component {
     constructor() {
         super();
-            // <Route path="test" component={TestPage}/>
+
         this.routes = (
-            <Route path="/" component={ItemComponents}>
-            </Route>
+            <Route path='\/' component={Home}></Route>
+            <Route path='\/item\/create' component={ItemCreate}></Route>
         );
     }
 

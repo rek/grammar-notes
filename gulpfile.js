@@ -82,7 +82,9 @@ gulp.task('default', ['start'], function() {
 gulp.task('watch', function() {
 	gulp.watch(pkg.paths.srcClient + '/styles/*.css', ['styles']);
 	gulp.watch(pkg.paths.srcClient + '/*.html', ['html']);
-	gulp.watch(pkg.paths.srcClient + '/*.js', ['js']);
+	gulp.watch(pkg.paths.srcClient + '/*.js');
+	// gulp.watch(pkg.paths.srcClient + '/*.js', ['js']);
+
 	gulp.watch(pkg.paths.srcServer + '/*.js', ['js']);
 	gulp.watch(pkg.paths.srcServer + '/**/*.js', ['js']);
 });

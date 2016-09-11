@@ -1,6 +1,11 @@
 {
 	"plugins": ["babel", "react"],
 	"parser": "babel-eslint",
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
 	"ecmaFeatures": {
 		"jsx": true
 	},
@@ -104,6 +109,8 @@
 		"no-with": 1,
 		"operator-linebreak": [1, "after"],
 		"quotes": [1, "single"],
+		"react/jsx-uses-react": "error",
+		"react/jsx-uses-vars": "error",
 		"semi": [0, "never"],
 		"space-before-blocks": [1, "always"],
 		"space-before-function-paren": [1, "never"],
