@@ -5,6 +5,7 @@ import {Provider} from 'react-redux';
 import Home from './home';
 import Items from '../items/list';
 import ItemCreate from '../items/create';
+import ItemEdit from '../items/edit';
 
 const requireAuth = (nextState, replace) => {
     if (true) {
@@ -24,6 +25,7 @@ export default class AppRouter extends React.Component {
                 <Route path='/admin' component={Items} onEnter={requireAuth}></Route>
                 <Route path='/items' component={Items}></Route>
                 <Route path='/items/create' component={ItemCreate}></Route>
+                <Route path='/items/:itemId' component={ItemEdit} item='a'></Route>
             </Route>
         );
     }
