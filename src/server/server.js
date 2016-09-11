@@ -1,25 +1,21 @@
-'use strict'
+/* eslint no-path-concat: false */
 
 import pg from 'pg'
 import express from 'express'
-import fs from 'fs'
-import eps from 'ejs'
+// import fs from 'fs'
+// import eps from 'ejs'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import setupDB from './setupDb.js'
+import config from './config.js'
 import itemEndpoints from './items/endpoints.js'
 import tagEndpoints from './tag/handlers.js'
 
 Object.assign = require('object-assign')
 
-const port = process.env.PORT || 8080,
-	ip = process.env.IP || '0.0.0.0'
-
-let db = null,
-	app = express(),
-	Pool = require('pg').Pool,
-	dbDetails = new Object(),
-	devMode = !process.env.NODE_ENV || process.env.NODE_ENV !== 'production'
+let app = express(),
+	Pool = pg.Pool,
+	devMode = config.env !== 'production'
 
 app.engine('html', require('ejs').renderFile)
 app.use(morgan('combined'))
@@ -33,7 +29,7 @@ app.use('/jspm_packages', express.static(__dirname + '/../../jspm_packages'))
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
 // create the pool somewhere globally so its lifetime
@@ -42,7 +38,12 @@ app.use(bodyParser.json())
 let pool = new Pool()
 
 // main app
-app.get('/', function (req, res) {
+// app.get('/', function(req, res) {
+// 	res.render(devMode ? 'index.html' : 'index.prod.html')
+// })
+
+// so all routes work
+app.get('*', function(req, res) {
 	res.render(devMode ? 'index.html' : 'index.prod.html')
 })
 
@@ -51,12 +52,12 @@ app.get('/', function (req, res) {
 * API
 *
 */
-app.get('/health', function (req, res) {
+app.get('/health', function(req, res) {
 	res.send('OK')
 })
 
 // error handling
-app.use(function(error, req, res, next) {
+app.use(function(error, req, res) { // , next
 	console.error(error.stack)
 	res.status(500).send('Something bad happened!')
 })
@@ -83,8 +84,8 @@ let runServer = () => {
 			itemEndpoints(app, pool, handleError)
 			tagEndpoints(app, pool, handleError)
 
-			app.listen(port, ip)
-			console.log('Server running on http://%s:%s', ip, port)
+			app.listen(config.port, config.ip)
+			console.log('Server running on http://%s:%s', config.ip, config.port)
 		})
 		.catch((error) => {
 			console.log('Error:', error)

@@ -16,6 +16,7 @@ export class App extends React.Component {
 
 	render() {
 		const {alertType, message, dismissNotification} = this.props
+
 		return (
 			<div>
 				<Navbar>
@@ -27,8 +28,11 @@ export class App extends React.Component {
 						</Navbar.Brand>
 					</Navbar.Header>
 					<Nav>
-						<LinkContainer to="/test">
-							<NavItem>Test</NavItem>
+						<LinkContainer to="/items">
+							<NavItem>Items</NavItem>
+						</LinkContainer>
+						<LinkContainer to="/items/create">
+							<NavItem>Add Item</NavItem>
 						</LinkContainer>
 					</Nav>
 				</Navbar>

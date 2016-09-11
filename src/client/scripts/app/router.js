@@ -10,8 +10,9 @@ export default class AppRouter extends React.Component {
         super();
 
         this.routes = (
-            <Route path='\/' component={Home}></Route>
-            <Route path='\/item\/create' component={ItemCreate}></Route>
+            <Route component={Home}>
+                <Route path='\/item\/create' component={ItemCreate}></Route>
+            </Route>
         );
     }
 

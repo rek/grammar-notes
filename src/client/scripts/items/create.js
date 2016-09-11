@@ -16,18 +16,17 @@ export class App extends React.Component {
 		const {alertType, message, dismissNotification} = this.props
 
 		return (
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-6">
+			<div className='container-fluid'>
+				<div className='row'>
+					<div className='col-md-6'>
 						Getting better
 					</div>
 
-					<div class="col-md-6">
-						Right pannel
+					<div className='col-md-6'>
+						Right panel
 					</div>
 				</div>
 			</div>
-
 		)
 	}
 }
