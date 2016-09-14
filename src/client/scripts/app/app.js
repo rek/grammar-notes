@@ -8,6 +8,7 @@ import thunkMiddleware from 'redux-thunk';
 // import TestPageReducer from './reducers/test';
 import AppRouter from './router';
 import NotificationReducer from '../notifications/reducers';
+import AppReducer from './reducers';
 
 var devTools = window.devToolsExtension ?
 	window.devToolsExtension() :
@@ -17,6 +18,7 @@ var devTools = window.devToolsExtension ?
 	}
 
 let store = createStore(combineReducers({
+    AppReducer,
     NotificationReducer,
     // TestPageReducer
 }), {}, compose(applyMiddleware(thunkMiddleware), devTools));

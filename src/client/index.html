@@ -30,29 +30,17 @@
 			var readyForMainLoad;
 			System.trace = true;
 			readyForMainLoad = System.import('systemjs-hot-reloader').then(function(HotReloader) {
-			    hr = new HotReloader.default('http://localhost:8090');  // chokidar-socket-emitter port
+				hr = new HotReloader.default('http://localhost:8090');  // chokidar-socket-emitter port
 			});
 
 			Promise.resolve(readyForMainLoad).then(function() {
-			    // System.import('scripts/app.bundle');
-			    System.import('scripts/app/app');
+				// System.import('scripts/app.bundle');
+				System.import('scripts/app/app');
 			});
 		</script>
 	</head>
 
 	<body>
 		<div id="app"></div>
-
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-6">
-					V2 Awesome. Bootstrapped!
-				</div>
-
-				<div class="col-md-6">
-					right!?
-				</div>
-			</div>
-		</div>
 	</body>
 </html>
