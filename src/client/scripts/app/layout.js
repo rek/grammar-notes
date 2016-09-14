@@ -1,17 +1,27 @@
 import React from 'react'
 import {connect} from 'react-redux'
-// import Nav from '../navigation/components';
+
+import Nav from '../navigation/components';
+import NotificationActions from '../notifications/actions'
+import Notification from '../notifications/components'
 
 export class App extends React.Component {
+	componentWillMount() {
+		this.context.router.listen(() => {
+			this.props.dismissNotification()
+		})
+	}
 
 	render() {
 		const {alertType, message, dismissNotification} = this.props
 
 		return (
-			// <Nav />
-			<div>
-			hah
-			</div>
+            <div>
+				<Nav />
+				<Notification alertType={alertType} message={message} onDismiss={dismissNotification}/>
+
+				{this.props.children}
+            </div>
 		)
 	}
 }
@@ -27,4 +37,4 @@ App.propTypes = {
 	children: React.PropTypes.object
 }
 
-export default connect((state) => state.AppReducer)(App)
+export default connect((state) => state.AppReducer, NotificationActions)(App)

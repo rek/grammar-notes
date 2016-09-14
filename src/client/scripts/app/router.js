@@ -27,7 +27,7 @@ export default class AppRouter extends React.Component {
 				<Route path='/admin' component={Items} onEnter={requireAuth} />
 				<Route path='/items' component={Items} />
 				<Route path='/items/create' component={ItemCreate} />
-				<Route path='/items/:itemId' component={ItemEdit} item='a' />
+				<Route path='/items/:itemId' component={ItemEdit} />
 			</Route>
 		);
 	}

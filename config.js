@@ -23,7 +23,7 @@ System.config({
     "node-uuid": "npm:node-uuid@1.4.7",
     "react": "npm:react@15.3.1",
     "react-addons-test-utils": "npm:react-addons-test-utils@0.14.8",
-    "react-bootstrap": "npm:react-bootstrap@0.28.5",
+    "react-bootstrap": "npm:react-bootstrap@0.30.3",
     "react-bootstrap-table": "npm:react-bootstrap-table@1.6.2",
     "react-datagrid": "npm:react-datagrid@2.1.1",
     "react-dom": "npm:react-dom@15.3.1",
@@ -31,7 +31,7 @@ System.config({
     "react-paginate": "npm:react-paginate@0.5.7",
     "react-redux": "npm:react-redux@4.4.5",
     "react-router": "npm:react-router@2.8.1",
-    "react-router-bootstrap": "npm:react-router-bootstrap@0.20.1",
+    "react-router-bootstrap": "npm:react-router-bootstrap@0.23.1",
     "redux": "npm:redux@3.6.0",
     "redux-mock-store": "npm:redux-mock-store@0.0.6",
     "redux-thunk": "npm:redux-thunk@1.0.3",
@@ -116,6 +116,10 @@ System.config({
     },
     "npm:babel-runtime@5.8.38": {
       "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:babel-runtime@6.11.6": {
+      "core-js": "npm:core-js@2.4.1",
+      "regenerator-runtime": "npm:regenerator-runtime@0.9.5"
     },
     "npm:bn.js@4.11.6": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
@@ -212,6 +216,12 @@ System.config({
       "systemjs-json": "github:systemjs/plugin-json@0.1.2"
     },
     "npm:core-js@1.2.7": {
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "path": "github:jspm/nodelibs-path@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.2"
+    },
+    "npm:core-js@2.4.1": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
@@ -393,9 +403,6 @@ System.config({
       "node-fetch": "npm:node-fetch@1.6.1",
       "whatwg-fetch": "npm:whatwg-fetch@0.10.1"
     },
-    "npm:lodash-compat@3.10.2": {
-      "process": "github:jspm/nodelibs-process@0.1.2"
-    },
     "npm:loose-envify@1.2.0": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "js-tokens": "npm:js-tokens@1.0.3",
@@ -497,20 +504,19 @@ System.config({
       "react": "npm:react@0.14.8",
       "react-toastr": "npm:react-toastr@2.8.0"
     },
-    "npm:react-bootstrap@0.28.5": {
-      "babel-runtime": "npm:babel-runtime@5.8.38",
+    "npm:react-bootstrap@0.30.3": {
+      "babel-runtime": "npm:babel-runtime@6.11.6",
       "classnames": "npm:classnames@2.2.5",
       "dom-helpers": "npm:dom-helpers@2.4.0",
       "invariant": "npm:invariant@2.2.1",
       "keycode": "npm:keycode@2.1.4",
-      "lodash-compat": "npm:lodash-compat@3.10.2",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "react": "npm:react@15.3.1",
       "react-dom": "npm:react-dom@15.3.1",
       "react-overlays": "npm:react-overlays@0.6.6",
-      "react-prop-types": "npm:react-prop-types@0.3.2",
-      "uncontrollable": "npm:uncontrollable@3.3.1",
-      "warning": "npm:warning@2.1.0"
+      "react-prop-types": "npm:react-prop-types@0.4.0",
+      "uncontrollable": "npm:uncontrollable@4.0.3",
+      "warning": "npm:warning@3.0.0"
     },
     "npm:react-class@1.2.4": {
       "object-assign": "npm:object-assign@4.1.0",
@@ -598,9 +604,6 @@ System.config({
       "react-dom": "npm:react-dom@0.14.8",
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
-    "npm:react-prop-types@0.3.2": {
-      "warning": "npm:warning@2.1.0"
-    },
     "npm:react-prop-types@0.4.0": {
       "react": "npm:react@15.3.1",
       "warning": "npm:warning@3.0.0"
@@ -614,9 +617,8 @@ System.config({
       "react": "npm:react@15.3.1",
       "redux": "npm:redux@3.6.0"
     },
-    "npm:react-router-bootstrap@0.20.1": {
-      "react": "npm:react@15.3.1",
-      "react-router": "npm:react-router@2.8.1"
+    "npm:react-router-bootstrap@0.23.1": {
+      "react": "npm:react@15.3.1"
     },
     "npm:react-router@2.8.1": {
       "history": "npm:history@2.1.2",
@@ -694,6 +696,10 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2",
       "symbol-observable": "npm:symbol-observable@1.0.2"
     },
+    "npm:regenerator-runtime@0.9.5": {
+      "path": "github:jspm/nodelibs-path@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
     "npm:region-align@2.1.3": {
       "object-assign": "npm:object-assign@4.1.0",
       "region": "npm:region@2.1.2"
@@ -736,7 +742,7 @@ System.config({
     "npm:ua-parser-js@0.7.10": {
       "systemjs-json": "github:systemjs/plugin-json@0.1.2"
     },
-    "npm:uncontrollable@3.3.1": {
+    "npm:uncontrollable@4.0.3": {
       "invariant": "npm:invariant@2.2.1",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "react": "npm:react@15.3.1"
