@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {default as UUID} from "node-uuid";
+import {default as UUID} from 'node-uuid';
 
 import {Navbar, Nav, NavItem} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'

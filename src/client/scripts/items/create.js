@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
+// import 'parsleyjs'
 
-import notiActions from '../notifications/actions'
-import Notification from '../notifications/components'
+// import notiActions from '../notifications/actions'
+// import Notification from '../notifications/components'
 
 export class App extends React.Component {
 
@@ -12,18 +13,29 @@ export class App extends React.Component {
 		})
 	}
 
+	submitForm(e) {
+		e.preventDefault()
+
+		// if (!this.state.doingLogin && $('form').parsley().validate()) {
+
+		console.log('this.item.email.value', this.refs.email.value);
+	}
+
 	render() {
-		const {alertType, message, dismissNotification} = this.props
+		// const {alertType, message, dismissNotification} = this.props
 
 		return (
 			<div className='container-fluid'>
 				<div className='row'>
 					<div className='col-md-6'>
-						Getting better
+						Enter in item name:
 					</div>
 
 					<div className='col-md-6'>
-						Right panel
+						<form onSubmit={this.submitForm} ref='form'>
+							<input type='text' ref='item' />
+							<button type='submit'>Create</button>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -42,4 +54,4 @@ App.propTypes = {
 	children: React.PropTypes.object
 }
 
-export default connect((state) => state.AppReducer, notiActions)(App)
+export default connect((state) => state.AppReducer)(App)
