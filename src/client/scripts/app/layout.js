@@ -1,18 +1,19 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import utils from '../utils'
 
 import Nav from '../navigation/components';
 import SubNav from '../navigation/components/subnav';
 
-import NotificationActions from '../notifications/actions'
 import Notification from '../notifications/components'
+import NotificationActions from '../notifications/actions'
 
 export class App extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			data: [{
+			subnav: [{
 				item_id: '1',
 				item_title: 'nice'
 			}]
@@ -23,7 +24,12 @@ export class App extends React.Component {
 		this.context.router.listen(() => {
 			this.props.dismissNotification()
 		})
+	}
 
+	componentDidMount() {
+		utils.ajax().get('/items').then((data) => {
+			console.log('GOT DATA:', data);
+		})
 	}
 
 	render() {
@@ -32,7 +38,7 @@ export class App extends React.Component {
 		return (
             <div>
 				<Nav />
-				<SubNav data={this.state.data} />
+				<SubNav data={this.state.subnav} />
 				<Notification alertType={alertType} message={message} onDismiss={dismissNotification}/>
 
 				{this.props.children}

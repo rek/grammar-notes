@@ -1,29 +1,31 @@
 import React from 'react'
 import {connect} from 'react-redux'
-// import 'parsleyjs'
-
-// import notiActions from '../notifications/actions'
-// import Notification from '../notifications/components'
+import ItemActions from './actions'
 
 export class App extends React.Component {
+	constructor() {
+		super()
 
-	componentWillMount() {
-		this.context.router.listen(() => {
-			this.props.dismissNotification()
-		})
+		console.log('this', this);
 	}
 
-	submitForm(e) {
-		e.preventDefault()
+	// componentWillMount() {
+	// 	this.context.router.listen(() => {
+	// 		this.props.dismissNotification()
+	// 	})
+	// }
+
+	submitForm(event) {
+		event.preventDefault()
 
 		// if (!this.state.doingLogin && $('form').parsley().validate()) {
 
 		console.log('this.item.email.value', this.refs.email.value);
+
+		console.log('props', this.props);
 	}
 
 	render() {
-		// const {alertType, message, dismissNotification} = this.props
-
 		return (
 			<div className='container-fluid'>
 				<div className='row'>
@@ -48,10 +50,6 @@ App.contextTypes = {
 }
 
 App.propTypes = {
-	dismissNotification: React.PropTypes.func,
-	message: React.PropTypes.string,
-	alertType: React.PropTypes.string,
-	children: React.PropTypes.object
 }
 
-export default connect((state) => state.AppReducer)(App)
+export default connect((state) => state.ItemsReducer, ItemActions)(App)
