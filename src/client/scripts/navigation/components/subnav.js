@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {default as UUID} from "node-uuid";
 
 import {Navbar, Nav, NavItem} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
@@ -10,7 +11,7 @@ export class SubNav extends React.Component {
 			let link = '/items/' + item.item_id
 
 			return (
-				<LinkContainer to={link}>
+				<LinkContainer to={link} key={UUID.v4()}>
 					<NavItem>{item.item_title}</NavItem>
 				</LinkContainer>
 			)
