@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Navbar, Nav, NavItem} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 
-export class App extends React.Component {
+export class MainNav extends React.Component {
 	render() {
 		return (
 			<Navbar>
@@ -28,8 +28,11 @@ export class App extends React.Component {
 	}
 }
 
-App.contextTypes = {
+MainNav.contextTypes = {
 	router: React.PropTypes.object.isRequired
 }
 
-export default connect((state) => state.AppReducer)(App)
+export default connect((state) => {
+	console.log('state', state);
+	return state.AppReducer
+})(MainNav)

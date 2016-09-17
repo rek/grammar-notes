@@ -1,5 +1,5 @@
 import Axios from 'axios'
-import Config from 'config.js'
+import Config from './config'
 
 let API = Config.APIRoot + ':' + Config.APIPort || '80'
 
