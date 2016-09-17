@@ -7,8 +7,10 @@ import thunkMiddleware from 'redux-thunk';
 
 // import TestPageReducer from './reducers/test';
 import AppRouter from './router';
-import NotificationReducer from '../notifications/reducers';
+
 import AppReducer from './reducers';
+import ItemsReducer from '../items/reducers';
+import NotificationReducer from '../notifications/reducers';
 
 var devTools = window.devToolsExtension ?
 	window.devToolsExtension() :
@@ -20,7 +22,7 @@ var devTools = window.devToolsExtension ?
 let store = createStore(combineReducers({
     AppReducer,
     NotificationReducer,
-    // TestPageReducer
+    ItemsReducer
 }), {}, compose(applyMiddleware(thunkMiddleware), devTools));
 
 ReactDOM.render((
