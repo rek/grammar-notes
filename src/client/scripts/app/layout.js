@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import utils from '../utils'
+import {ajax} from '../utils'
 
 import Nav from '../navigation/components';
 import SubNav from '../navigation/components/subnav';
@@ -27,7 +27,7 @@ export class App extends React.Component {
 	}
 
 	componentDidMount() {
-		utils.ajax().get('/items').then((data) => {
+		ajax().get('/items').then((data) => {
 			console.log('GOT DATA:', data);
 		})
 	}

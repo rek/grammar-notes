@@ -1,12 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import ItemActions from './actions'
+
+import Actions from './actions'
 
 export class App extends React.Component {
 	constructor() {
 		super()
 
-		console.log('this', this);
+		// console.log('this', this);
+		this.submitForm = this.submitForm.bind(this)
 	}
 
 	// componentWillMount() {
@@ -18,11 +20,13 @@ export class App extends React.Component {
 	submitForm(event) {
 		event.preventDefault()
 
-		// if (!this.state.doingLogin && $('form').parsley().validate()) {
+		// if ($('form').parsley().validate()) {
+		// }
+		// console.log('this', this);
 
-		console.log('this.item.email.value', this.refs.email.value);
-
-		console.log('props', this.props);
+		this.props.create({
+			title: this.refs.item.value
+		})
 	}
 
 	render() {
@@ -45,11 +49,11 @@ export class App extends React.Component {
 	}
 }
 
-App.contextTypes = {
-	router: React.PropTypes.object.isRequired
-}
+// App.contextTypes = {
+// 	router: React.PropTypes.object.isRequired
+// }
 
-App.propTypes = {
-}
+// App.propTypes = {
+// }
 
-export default connect((state) => state.ItemsReducer, ItemActions)(App)
+export default connect((state) => state.ItemsReducer, Actions)(App)
