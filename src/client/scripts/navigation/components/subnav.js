@@ -7,8 +7,10 @@ import {LinkContainer} from 'react-router-bootstrap'
 export class SubNav extends React.Component {
 	render() {
 		let items = this.props.data.map((item) => {
+			let link = '/items/' + item.item_id
+
 			return (
-				<LinkContainer to="/items/{item.item_id}">
+				<LinkContainer to={link}>
 					<NavItem>{item.item_title}</NavItem>
 				</LinkContainer>
 			)
@@ -28,4 +30,4 @@ SubNav.contextTypes = {
 	router: React.PropTypes.object.isRequired
 }
 
-export default connect((state) => state.AppReducer)(SubNav)
+export default connect()(SubNav)

@@ -33,6 +33,7 @@ MainNav.contextTypes = {
 }
 
 export default connect((state) => {
-	console.log('state', state);
+	// console.log('state', state);
+	// dont need our own reducer at the moment:
 	return state.AppReducer
 })(MainNav)
