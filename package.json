@@ -81,6 +81,7 @@
   },
   "jspm": {
     "dependencies": {
+      "axios": "npm:axios@^0.14.0",
       "lodash": "npm:lodash@^4.0.0",
       "moment": "npm:moment@^2.11.1",
       "node-uuid": "npm:node-uuid@^1.4.7",

@@ -8,6 +8,9 @@ import Items from '../items/list';
 import ItemCreate from '../items/create';
 import ItemEdit from '../items/edit';
 
+const setHome = (nextState, replace) => {
+	replace({pathname: '/items'})
+}
 const requireAuth = (nextState, replace) => {
 	if (true) {
 	// if (!auth.isAdmin()) {
@@ -23,7 +26,7 @@ export default class AppRouter extends React.Component {
 				// <Route path='/items/:id' component={ItemShow}></Route>
 		this.routes = (
 			<Route component={Layout}>
-				<Route path='/' component={Home} />
+				<Route path='/' component={Home} onEnter={setHome} />
 				<Route path='/admin' component={Items} onEnter={requireAuth} />
 				<Route path='/items' component={Items} />
 				<Route path='/items/create' component={ItemCreate} />
