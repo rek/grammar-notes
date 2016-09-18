@@ -23,7 +23,11 @@ let store = createStore(combineReducers({
     AppReducer,
     NotificationReducer,
     ItemsReducer
-}), {}, compose(applyMiddleware(thunkMiddleware), devTools));
+}),
+// default state:
+{},
+//
+compose(applyMiddleware(thunkMiddleware), devTools));
 
 ReactDOM.render((
     <AppRouter store={store}/>

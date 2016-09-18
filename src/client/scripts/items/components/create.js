@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import Actions from './actions'
+import Actions from '../actions'
 
 export class App extends React.Component {
 	constructor() {

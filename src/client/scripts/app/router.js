@@ -4,20 +4,24 @@ import {Provider} from 'react-redux';
 
 import Layout from './layout';
 import Home from './home';
-import Items from '../items/list';
-import ItemCreate from '../items/create';
-import ItemEdit from '../items/edit';
+
+import ItemList from '../items/components/list';
+import ItemCreate from '../items/components/create';
+import ItemEdit from '../items/components/edit';
+import ItemShow from '../items/components/show';
 
 const setHome = (nextState, replace) => {
-	replace({pathname: '/items'})
+	replace({pathname: '/items/admin'})
 }
-const requireAuth = (nextState, replace) => {
-	if (true) {
-	// if (!auth.isAdmin()) {
-		// Redirect to Home page if not an Admin
-		replace({pathname: '/'})
-	}
-}
+
+// const requireAuth = (nextState, replace) => {
+// 	if (true) {
+// 	// if (!auth.isAdmin()) {
+// 	// }
+// 		// Redirect to Home page if not an Admin
+// 		replace({pathname: '/'})
+// 	}
+// }
 
 export default class AppRouter extends React.Component {
 	constructor() {
@@ -27,10 +31,10 @@ export default class AppRouter extends React.Component {
 		this.routes = (
 			<Route component={Layout}>
 				<Route path='/' component={Home} onEnter={setHome} />
-				<Route path='/admin' component={Items} onEnter={requireAuth} />
-				<Route path='/items' component={Items} />
-				<Route path='/items/create' component={ItemCreate} />
-				<Route path='/items/:itemId' component={ItemEdit} />
+				<Route path='/items/:itemId' component={ItemShow} />
+				<Route path='/admin/items' component={ItemList} />
+				<Route path='/admin/items/create' component={ItemCreate} />
+				<Route path='/admin/items/:itemId' component={ItemEdit} />
 			</Route>
 		);
 	}

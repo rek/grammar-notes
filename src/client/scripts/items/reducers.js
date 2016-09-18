@@ -10,7 +10,7 @@ export default handleActions([
 
 			ajax().post('/api/items', {
 				item_title: action.payload.title,
-				text: action.payload.text || 'test'
+				content: action.payload.content || 'test'
 			}).then((data) => {
 				console.log('ADDED DATA:', data);
 			})
