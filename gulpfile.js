@@ -72,9 +72,15 @@ gulp.task('test', ['build'], function() {
 })
 
 gulp.task('clean', function() {
-	return gulp.src(pkg.paths.distClient)
+	let client = gulp.src(pkg.paths.distClient)
 		.pipe(plugins.clean({force: true}))
 		.pipe(gulp.dest(pkg.paths.srcClient))
+
+	let server = gulp.src(pkg.paths.distServer)
+		.pipe(plugins.clean({force: true}))
+		.pipe(gulp.dest(pkg.paths.srcServer))
+
+	return merge(client, server);
 });
 
 gulp.task('build', ['html', 'js', 'styles'], function() {

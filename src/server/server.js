@@ -8,7 +8,7 @@ import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import setupDB from './setupDb.js'
 import config from './config.js'
-import itemEndpoints from './items/endpoints.js'
+import itemEndpoints from './item/handlers.js'
 import tagEndpoints from './tag/handlers.js'
 
 Object.assign = require('object-assign')
@@ -42,7 +42,9 @@ let handleError = (error, res) => {
 	// console.log(error.message, error.stack)
 	res.writeHead(500, {'content-type': 'text/plain'})
 	// res.status(code || 500).json({'error': message})
-	// console.error('Error:', error)
+	console.error('Error:', error)
+	console.error('res:', res)
+
 	res.send('Error:', error.stack)
 
 	res.end('An error occurred')
@@ -71,7 +73,24 @@ let runServer = () => {
 			})
 
 			// error handling
-			app.use(handleError)
+			function logErrors(err, req, res, next) {
+				console.error(err.stack);
+				next(err);
+			}
+			function clientErrorHandler(err, req, res, next) {
+				if (req.xhr) {
+					res.status(500).send({ error: 'Something failed!' });
+				} else {
+					next(err);
+				}
+			}
+			function errorHandler(err, req, res, next) {
+				res.status(500);
+				res.render('error', { error: err });
+			}
+			app.use(logErrors);
+			app.use(clientErrorHandler);
+			app.use(errorHandler);
 
 			app.listen(config.port, config.ip)
 			console.log('Server running on http://%s:%s', config.ip, config.port)

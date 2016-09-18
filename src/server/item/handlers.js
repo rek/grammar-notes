@@ -39,9 +39,14 @@ let endpoints = (app, pool, handleError) => {
 			validItems.content = req.body.content
 		}
 
+		if (_.isEmpty(validItems)) {
+			console.log('Empty, should throw error now');
+		}
+
 		let sql = inserter(table, validItems)
 
 		pool.query(sql.query, sql.data, (err) => {
+
 			if (err) {
 				return handleError(err, res)
 			}

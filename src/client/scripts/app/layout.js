@@ -29,6 +29,7 @@ export class App extends React.Component {
 	componentDidMount() {
 		ajax().get('/api/items').then((data) => {
 			console.log('GOT DATA:', data);
+			this.setState({subnav: data.data})
 		})
 	}
 

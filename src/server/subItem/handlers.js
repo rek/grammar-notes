@@ -4,7 +4,7 @@ import {inserter} from '../utils'
 let endpoints = (app, pool, handleError) => {
 	let table = 'subItem'
 
-	app.get('/api/items', function(req, res) {
+	app.get('/api/subitems', function(req, res) {
 		pool.query(`SELECT * FROM ${table}`, function(err, result) {
 			// handle an error from the query
 			if (err) {
