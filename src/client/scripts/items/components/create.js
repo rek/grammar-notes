@@ -1,6 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+import {
+	FormGroup,
+	ControlLabel,
+	FormControl,
+	HelpBlock,
+	Button,
+	ButtonToolbar
+} from 'react-bootstrap'
+
 import Actions from '../actions'
 
 export class App extends React.Component {
@@ -9,6 +18,10 @@ export class App extends React.Component {
 
 		// console.log('this', this);
 		this.submitForm = this.submitForm.bind(this)
+
+		this.state = {
+			title: ''
+		}
 	}
 
 	// componentWillMount() {
@@ -20,13 +33,27 @@ export class App extends React.Component {
 	submitForm(event) {
 		event.preventDefault()
 
-		// if ($('form').parsley().validate()) {
-		// }
-		// console.log('this', this);
+		console.log(this);
 
 		this.props.create(
-			this.refs.item.value
+			this.refs.title.value
 		)
+	}
+
+	getValidationState() {
+		const length = this.state.title.length
+
+		if (length > 10) {
+			return 'success'
+		} else if (length > 5) {
+			return 'warning'
+		} else if (length > 0) {
+			return 'error'
+		}
+	}
+
+	handleChange(event) {
+		this.setState({title: event.target.value});
 	}
 
 	render() {
@@ -34,13 +61,25 @@ export class App extends React.Component {
 			<div className='container-fluid'>
 				<div className='row'>
 					<div className='col-md-6'>
-						Enter in item name:
-					</div>
+						<form onSubmit={this.submitForm}>
+							<FormGroup
+								controlId="formBasicText"
+								validationState={this.getValidationState()}
+							>
+								<ControlLabel>Enter in title:</ControlLabel>
+								<FormControl
+									type="text"
+									value={this.state.title}
+									placeholder="Enter title, eg: Verbs"
+									onChange={this.handleChange}
+								/>
+								<FormControl.Feedback />
+								<HelpBlock>Validation is based on string length.</HelpBlock>
+							</FormGroup>
 
-					<div className='col-md-6'>
-						<form onSubmit={this.submitForm} ref='form'>
-							<input type='text' ref='item' />
-							<button type='submit'>Create</button>
+							<ButtonToolbar>
+								<Button type='submit' bsSize='large'>Create</Button>
+							</ButtonToolbar>
 						</form>
 					</div>
 				</div>
