@@ -1,4 +1,4 @@
 export default {
-	APIRoot: 'localhost',
+	APIRoot: 'http://localhost',
 	APIPort: '8080'
 }

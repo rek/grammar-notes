@@ -27,7 +27,7 @@ export class App extends React.Component {
 	}
 
 	componentDidMount() {
-		ajax().get('/items').then((data) => {
+		ajax().get('/api/items').then((data) => {
 			console.log('GOT DATA:', data);
 		})
 	}

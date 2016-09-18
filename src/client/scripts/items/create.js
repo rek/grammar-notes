@@ -24,9 +24,9 @@ export class App extends React.Component {
 		// }
 		// console.log('this', this);
 
-		this.props.create({
-			title: this.refs.item.value
-		})
+		this.props.create(
+			this.refs.item.value
+		)
 	}
 
 	render() {

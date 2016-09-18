@@ -37,35 +37,12 @@ app.use(bodyParser.json())
 // uses vars from env
 let pool = new Pool()
 
-// main app
-// app.get('/', function(req, res) {
-// 	res.render(devMode ? 'index.html' : 'index.prod.html')
-// })
-
-// so all routes work
-app.get('*', function(req, res) {
-	res.render(devMode ? 'index.html' : 'index.prod.html')
-})
-
-/**
-*
-* API
-*
-*/
-app.get('/health', function(req, res) {
-	res.send('OK')
-})
-
-// error handling
-app.use(function(error, req, res) { // , next
-	console.error(error.stack)
-	res.status(500).send('Something bad happened!')
-})
-
 let handleError = (error, res) => {
 	console.log(error.message, error.stack)
 	res.writeHead(500, {'content-type': 'text/plain'})
 	// res.status(code || 500).json({'error': message})
+	console.error('Error:', error.stack)
+
 	res.end('An error occurred')
 
     // res.statusCode = 400;
@@ -83,6 +60,39 @@ let runServer = () => {
 
 			itemEndpoints(app, pool, handleError)
 			tagEndpoints(app, pool, handleError)
+
+			// so all routes after we have attached api routes
+			app.get('/items/*', function(req, res) {
+				res.render(devMode ? 'index.html' : 'index.prod.html')
+			})
+
+			app.get('/items', function(req, res) {
+				res.render(devMode ? 'index.html' : 'index.prod.html')
+			})
+
+			app.get('/', function(req, res) {
+				res.render(devMode ? 'index.html' : 'index.prod.html')
+			})
+
+			/**
+			*
+			* API
+			*
+			*/
+			app.get('/health', function(req, res) {
+				res.send('OK')
+			})
+
+			// app.use(App);
+
+			// error handling
+			app.use(handleError)
+
+			// app.use(function(error, req, res, next) { // , next
+			// 	console.error('Error:', error.stack)
+			// 	console.log('res', res);
+			// 	res.status(500).send('Something bad happened!')
+			// })
 
 			app.listen(config.port, config.ip)
 			console.log('Server running on http://%s:%s', config.ip, config.port)
