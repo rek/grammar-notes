@@ -4,8 +4,13 @@ let gulp = require('gulp'),
 	plugins = require('gulp-load-plugins')();
 
 gulp.task('html', function() {
-	return gulp.src(pkg.paths.srcClient + '/*.html')
+	let html = gulp.src(pkg.paths.srcClient + '/*.html')
 		.pipe(gulp.dest(pkg.paths.distClient))
+
+	let favicon = gulp.src(pkg.paths.srcClient + '/*.ico')
+		.pipe(gulp.dest(pkg.paths.distClient))
+
+	return merge(html, favicon);
 })
 
 gulp.task('styles', function() {

@@ -26,6 +26,7 @@ app.use('/scripts', express.static(__dirname + '/../../src/client/scripts'))
 app.use('/styles', express.static(__dirname + '/../client/styles'))
 app.use('/config.js', express.static(__dirname + '/../../config.js'))
 app.use('/jspm_packages', express.static(__dirname + '/../../jspm_packages'))
+app.use('/favicon.ico', express.static(__dirname + '/../client/favicon.ico'))
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -59,14 +60,11 @@ let runServer = () => {
 			itemEndpoints(app, pool, handleError)
 			tagEndpoints(app, pool, handleError)
 
-			let sendHtml(req, res) {
-				res.render(devMode ? 'index.html' : 'index.prod.html')
-			},
+			let sendHtml = (req, res) => res.render(devMode ? 'index.html' : 'index.prod.html')
 
 			// so all routes after we have attached api routes
 			app.get('/items/*', sendHtml)
 			app.get('/items', sendHtml)
-			app.get('/favicon.ico', 'favicon.ico')
 			app.get('/', sendHtml)
 			app.get('/health', function(req, res) {
 				res.send('OK')
