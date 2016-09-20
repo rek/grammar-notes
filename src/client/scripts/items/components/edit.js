@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {default as UUID} from 'node-uuid';
+// import {v4} from 'node-uuid';
 
 export class App extends React.Component {
 

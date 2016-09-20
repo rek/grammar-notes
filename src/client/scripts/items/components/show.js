@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {default as UUID} from 'node-uuid';
+import {v4} from 'node-uuid';
 
 export class App extends React.Component {
 	constructor(props) {
@@ -20,7 +20,7 @@ export class App extends React.Component {
 
 	render() {
 		return (
-			<div className='container-fluid' key={UUID.v4()}>
+			<div className='container-fluid' key={v4()}>
 				<div className='row'>
 					<div className='col-md-6'>
 						<textarea ref='content' />

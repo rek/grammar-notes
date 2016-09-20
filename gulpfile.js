@@ -100,7 +100,7 @@ gulp.task('watch', function() {
 	gulp.watch(pkg.paths.srcServer + '/**/*.js', ['js']);
 });
 
-gulp.task('start', ['watch'], function() {
+gulp.task('nodemon', function() {
 	plugins.env({
 		file: '.env',
 		type: 'ini'
@@ -118,4 +118,8 @@ gulp.task('start', ['watch'], function() {
 			'NODE_ENV': 'development'
 		}
 	})
+})
+
+gulp.task('start', ['watch', 'nodemon'], function() {
+
 })

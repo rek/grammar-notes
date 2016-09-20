@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router, Route, browserHistory} from 'react-router';
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {Provider} from 'react-redux';
 
 import Layout from './layout';
@@ -29,8 +29,8 @@ export default class AppRouter extends React.Component {
 
 				// <Route path='/items/:id' component={ItemShow}></Route>
 		this.routes = (
-			<Route component={Layout}>
-				<Route path='/' component={Home} onEnter={setHome} />
+			<Route path='/' component={Layout}>
+				<IndexRoute component={Home} onEnter={setHome}/>
 				<Route path='/items/:itemId' component={ItemShow} />
 				<Route path='/admin/items' component={ItemList} />
 				<Route path='/admin/items/create' component={ItemCreate} />

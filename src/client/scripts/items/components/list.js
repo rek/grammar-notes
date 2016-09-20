@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {ajax} from '../../utils'
-import {default as UUID} from 'node-uuid';
+import {v4} from 'node-uuid';
 
 export class App extends React.Component {
 
@@ -30,7 +30,7 @@ export class App extends React.Component {
 			<div className='container-fluid'>
 				{this.state.items.map((item) => {
 					return (
-						<div className='row' key={UUID.v4()}>
+						<div className='row' key={v4()}>
 							<div className='col-md-6' onClick={(context) => this.handelClick(context)}>
 								{item.item_title}
 							</div>

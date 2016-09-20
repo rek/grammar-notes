@@ -56,7 +56,7 @@ let runServer = () => {
 			console.log('DB Initialized, starting server.')
 
 			if (devMode) {
-				require('chokidar-socket-emitter')({port: 8090, path: 'src'});
+				require('chokidar-socket-emitter')({port: 8090});
 			}
 
 			itemEndpoints(app, pool, handleError)
