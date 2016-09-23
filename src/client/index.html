@@ -15,21 +15,25 @@
 
 	<body>
 		<div id="app"></div>
-		<script src="jspm_packages/system.js"></script>
-		<script src="config.js"></script>
+		<script src="../../jspm_packages/system.js"></script>
+		<script src="../../config.js"></script>
 		<script>
 			var readyForMainLoad
 
 			if (location.origin.match(/localhost/)) {
 				System.trace = true
 				readyForMainLoad = System.import('systemjs-hot-reloader').then(function(HotReloader) {
-					new HotReloader.default('http://localhost:8090') // chokidar-socket-emitter port
+					let port = '9778' // chokidar-socket-emitter port
+					console.log('chokidar-socket-emitter watching on port:', port);
+					new HotReloader.default('http://localhost:' + port)
 				})
 			}
 
 			Promise.resolve(readyForMainLoad).then(function() {
 				// System.import('scripts/app.bundle')
-				System.import('/scripts/app/app')
+				System.import('scripts/app/app.js').then(function() {
+					console.log('Ran at:', new Date())
+				})
 			})
 
 		</script>

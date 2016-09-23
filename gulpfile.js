@@ -29,32 +29,33 @@ gulp.task('jspm', function() {
 })
 
 gulp.task('js', function() {
-	let client = gulp.src(pkg.paths.srcClient + '/scripts/app/app.js')
-		.pipe(plugins.changed(pkg.paths.distClient + '/scripts'))
-		.pipe(plugins.jspm({
-			verbose: false,
-			bundles: [
-				{
-					src: 'app',
-					dst: 'app.js'
-				}
-			],
-			// bundleOptions: {
-			// 	minify: true,
-			// 	mangle: true
-			// }
-		}))
-		.pipe(gulp.dest(pkg.paths.distClient + '/scripts'));
+	// let client = gulp.src(pkg.paths.srcClient + '/scripts/app/app.js')
+	// 	.pipe(plugins.changed(pkg.paths.distClient + '/scripts'))
+		// .pipe(plugins.jspm({
+		// 	verbose: false,
+		// 	bundles: [
+		// 		{
+		// 			src: 'app',
+		// 			dst: 'app.js'
+		// 		}
+		// 	],
+		// 	// bundleOptions: {
+		// 	// 	minify: true,
+		// 	// 	mangle: true
+		// 	// }
+		// }))
+		// .pipe(gulp.dest(pkg.paths.distClient + '/scripts'));
 
-	let jspmFiles = gulp.src(pkg.paths.jspm + '/*')
-		.pipe(plugins.changed(pkg.paths.distClient + '/scripts'))
-		.pipe(gulp.dest(pkg.paths.distClient + '/scripts/' + pkg.paths.jspm))
-		.pipe(gulp.dest(pkg.paths.distClient + '/scripts'))
-	// let client = gulp.src(pkg.paths.srcClient + '/**/*.js')
-	// 	.pipe(plugins.babel({
-	// 		presets: ['es2015']
-	// 	}))
-		// .pipe(gulp.dest(pkg.paths.distClient + '/scripts'))
+	// let jspmFiles = gulp.src(pkg.paths.jspm + '/*')
+	// 	.pipe(plugins.changed(pkg.paths.distClient + '/scripts'))
+	// 	.pipe(gulp.dest(pkg.paths.distClient + '/scripts/' + pkg.paths.jspm))
+	// 	.pipe(gulp.dest(pkg.paths.distClient + '/scripts'))
+
+	let client = gulp.src(pkg.paths.srcClient + '/**/*.js')
+		// .pipe(plugins.babel({
+		// 	presets: ['es2015']
+		// }))
+		.pipe(gulp.dest(pkg.paths.distClient + '/'))
 
 	let server = gulp.src(pkg.paths.srcServer + '/**/*.js')
 		.pipe(plugins.changed(pkg.paths.distServer))
@@ -63,7 +64,8 @@ gulp.task('js', function() {
 		}))
 		.pipe(gulp.dest(pkg.paths.distServer))
 
-	return merge(client, server, jspmFiles);
+	return merge(client, server);
+	// return merge(client, server, jspmFiles);
 })
 
 gulp.task('test', ['build'], function() {
@@ -91,11 +93,13 @@ gulp.task('default', ['start'], function() {
 });
 
 gulp.task('watch', function() {
+	// client:
 	gulp.watch(pkg.paths.srcClient + '/styles/*.css', ['styles']);
 	gulp.watch(pkg.paths.srcClient + '/*.html', ['html']);
-	gulp.watch(pkg.paths.srcClient + '/*.js');
-	// gulp.watch(pkg.paths.srcClient + '/*.js', ['js']);
+	// gulp.watch(pkg.paths.srcClient + '/*.js');
+	gulp.watch(pkg.paths.srcClient + '/*.js', ['js']);
 
+	// server:
 	gulp.watch(pkg.paths.srcServer + '/*.js', ['js']);
 	gulp.watch(pkg.paths.srcServer + '/**/*.js', ['js']);
 });

@@ -1,5 +1,3 @@
-// import 'systemjs-hot-reloader/default-listener.js'
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
@@ -33,4 +31,4 @@ ReactDOM.render((
     <AppRouter store={store}/>
 ), document.getElementById('app'));
 
-console.log('Loading main app file - again');
+console.log('Loading main app file - again3');
