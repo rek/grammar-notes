@@ -3,24 +3,30 @@ let gulp = require('gulp'),
 	merge = require('merge-stream'),
 	plugins = require('gulp-load-plugins')();
 
-gulp.task('html', function() {
-	let html = gulp.src(pkg.paths.srcClient + '/*.html')
-		.pipe(gulp.dest(pkg.paths.distClient))
+gulp.task('html-prod', function() {
+	let html = gulp.src('index.prod.html')
+		.pipe(gulp.dest('index.html'))
 
-	let favicon = gulp.src(pkg.paths.srcClient + '/*.ico')
-		.pipe(gulp.dest(pkg.paths.distClient))
+	return merge(html);
+})
 
-	return merge(html, favicon);
+gulp.task('html-dev', function() {
+	let html = gulp.src('index.dev.html')
+		.pipe(plugins.rename('index.html'))
+		.pipe(gulp.dest('.'))
+
+	return merge(html);
 })
 
 gulp.task('styles', function() {
 	let bootstrap = gulp.src(pkg.paths.bower + '/bootstrap/dist/css/bootstrap*.css')
-		.pipe(gulp.dest(pkg.paths.distClient + '/styles'))
+		.pipe(gulp.dest('styles'))
 
-	let styles = gulp.src(pkg.paths.srcClient + '/styles/*.css')
-		.pipe(gulp.dest(pkg.paths.distClient + '/styles'))
+	// let styles = gulp.src(pkg.paths.srcClient + '/styles/*.css')
+	// 	.pipe(gulp.dest(pkg.paths.distClient + '/styles'))
 
-	return merge(bootstrap, styles);
+	// return merge(bootstrap, styles);
+	return merge(bootstrap);
 })
 
 gulp.task('jspm', function() {
@@ -29,101 +35,64 @@ gulp.task('jspm', function() {
 })
 
 gulp.task('js', function() {
-	// let client = gulp.src(pkg.paths.srcClient + '/scripts/app/app.js')
-	// 	.pipe(plugins.changed(pkg.paths.distClient + '/scripts'))
-		// .pipe(plugins.jspm({
-		// 	verbose: false,
-		// 	bundles: [
-		// 		{
-		// 			src: 'app',
-		// 			dst: 'app.js'
-		// 		}
-		// 	],
-		// 	// bundleOptions: {
-		// 	// 	minify: true,
-		// 	// 	mangle: true
-		// 	// }
-		// }))
-		// .pipe(gulp.dest(pkg.paths.distClient + '/scripts'));
+	let client = gulp.src('scripts/app/app.js')
+		// .pipe(plugins.changed('scripts'))
+		.pipe(plugins.jspm({
+			verbose: false,
+			bundles: [
+				{
+					src: 'app',
+					dst: 'app.js'
+				}
+			],
+			// bundleOptions: {
+			// 	minify: true,
+			// 	mangle: true
+			// }
+		}))
+		.pipe(gulp.dest('scripts'));
 
 	// let jspmFiles = gulp.src(pkg.paths.jspm + '/*')
 	// 	.pipe(plugins.changed(pkg.paths.distClient + '/scripts'))
 	// 	.pipe(gulp.dest(pkg.paths.distClient + '/scripts/' + pkg.paths.jspm))
 	// 	.pipe(gulp.dest(pkg.paths.distClient + '/scripts'))
 
-	let client = gulp.src(pkg.paths.srcClient + '/**/*.js')
+	// let client = gulp.src(pkg.paths.srcClient + '/**/*.js')
 		// .pipe(plugins.babel({
 		// 	presets: ['es2015']
 		// }))
-		.pipe(gulp.dest(pkg.paths.distClient + '/'))
+		// .pipe(gulp.dest(pkg.paths.distClient + '/'))
 
-	let server = gulp.src(pkg.paths.srcServer + '/**/*.js')
-		.pipe(plugins.changed(pkg.paths.distServer))
-		.pipe(plugins.babel({
-			presets: ['es2015']
-		}))
-		.pipe(gulp.dest(pkg.paths.distServer))
-
-	return merge(client, server);
-	// return merge(client, server, jspmFiles);
+	return merge(client);
 })
 
 gulp.task('test', ['build'], function() {
-	return gulp.src(pkg.paths.dist + '/**/test/*.js')
+	return gulp.src('test/**/test/*.js')
 		.pipe(plugins.mocha({reporter: 'nyan'}))
 })
 
 gulp.task('clean', function() {
-	let client = gulp.src(pkg.paths.distClient)
+	let styles = gulp.src('styles/bootstrap*.css')
 		.pipe(plugins.clean({force: true}))
-		.pipe(gulp.dest(pkg.paths.srcClient))
+		.pipe(gulp.dest('styles'))
 
-	let server = gulp.src(pkg.paths.distServer)
+	let html = gulp.src('index.html')
 		.pipe(plugins.clean({force: true}))
-		.pipe(gulp.dest(pkg.paths.srcServer))
+		// .pipe(gulp.dest(''))
 
-	return merge(client, server);
-});
-
-gulp.task('build', ['html', 'js', 'styles'], function() {
-});
-
-gulp.task('default', ['start'], function() {
-
+	return merge(html, styles);
 });
 
 gulp.task('watch', function() {
-	// client:
-	gulp.watch(pkg.paths.srcClient + '/styles/*.css', ['styles']);
-	gulp.watch(pkg.paths.srcClient + '/*.html', ['html']);
-	// gulp.watch(pkg.paths.srcClient + '/*.js');
-	gulp.watch(pkg.paths.srcClient + '/*.js', ['js']);
-
-	// server:
-	gulp.watch(pkg.paths.srcServer + '/*.js', ['js']);
-	gulp.watch(pkg.paths.srcServer + '/**/*.js', ['js']);
+	gulp.watch('styles/*.css', ['styles']);
+	gulp.watch('index.dev.html', ['html-dev']);
 });
 
-gulp.task('nodemon', function() {
-	plugins.env({
-		file: '.env',
-		type: 'ini'
-	})
+gulp.task('build', ['html-dev', 'styles'], function() {
+});
 
-	plugins.nodemon({
-		script: pkg.paths.distServer + '/server.js',
-		ext: 'js html',
-		delay: 3000,
-		watch: [
-			'src/server/*.js',
-			'src/server/**/*.js',
-		],
-		env: {
-			'NODE_ENV': 'development'
-		}
-	})
-})
+gulp.task('build-prod', ['html-prod', 'styles'], function() {
+});
 
-gulp.task('start', ['watch', 'nodemon'], function() {
-
-})
+gulp.task('default', ['build', 'watch'], function() {
+});

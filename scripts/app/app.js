@@ -31,4 +31,4 @@ ReactDOM.render((
     <AppRouter store={store}/>
 ), document.getElementById('app'));
 
-console.log('Loading main app file - again3');
+console.log('Loading main app file - again5');

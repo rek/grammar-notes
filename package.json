@@ -35,19 +35,7 @@
     "url": "https://github.com/rek/grammar-notes.git/issues"
   },
   "homepage": "https://github.com/rek/grammar-notes.git",
-  "dependencies": {
-    "aws-sdk": "^2.5.0",
-    "body-parser": "^1.15.2",
-    "chai": "^3.5.0",
-    "chai-http": "^2.0.1",
-    "ejs": "^2.4.1",
-    "express": "^4.13.4",
-    "mocha": "^2.4.5",
-    "mongodb": "^2.1.16",
-    "morgan": "^1.7.0",
-    "object-assign": "4.1.0",
-    "pg": "6.0.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.5.0",
     "babel-eslint": "^6.1.2",
@@ -70,6 +58,7 @@
     "gulp-mocha": "^2.2.0",
     "gulp-newer": "^1.2.0",
     "gulp-nodemon": "^2.1.0",
+    "gulp-rename": "^1.2.2",
     "gulp-task-loader": "^1.4.4",
     "gulp-watch": "^4.3.8",
     "http-server": "^0.9.0",
