@@ -94,5 +94,8 @@ gulp.task('build', ['html-dev', 'styles'], function() {
 gulp.task('build-prod', ['html-prod', 'styles'], function() {
 });
 
+var spawn = require('child_process').spawn;
+
 gulp.task('default', ['build', 'watch'], function() {
+	spawn('node', ['devServer.js'], {stdio: 'inherit'});
 });
