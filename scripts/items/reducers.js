@@ -1,5 +1,4 @@
 import {handleActions} from '../utils';
-import {ajax} from '../utils'
 
 export default handleActions([
 	{
@@ -7,13 +6,6 @@ export default handleActions([
 		reducer: (state, action) => {
 			console.log('state', state);
 			console.log('action', action);
-
-			ajax().post('/api/items', {
-				item_title: action.payload.title,
-				content: action.payload.content || 'test'
-			}).then((data) => {
-				console.log('ADDED DATA:', data);
-			})
 
 			if (!state.items) {
 				state.items = []

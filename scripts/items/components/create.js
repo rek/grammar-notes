@@ -14,7 +14,7 @@ import Actions from '../actions'
 
 export class App extends React.Component {
 	constructor() {
-		super()
+		super(props)
 
 		// console.log('this', this);
 		this.submitForm = this.submitForm.bind(this)
@@ -53,6 +53,7 @@ export class App extends React.Component {
 	}
 
 	handleChange(event) {
+		console.log('11', this);
 		this.setState({title: event.target.value});
 	}
 
@@ -63,14 +64,14 @@ export class App extends React.Component {
 					<div className='col-md-6'>
 						<form onSubmit={this.submitForm}>
 							<FormGroup
-								controlId="formBasicText"
+								controlId='formBasicText'
 								validationState={this.getValidationState()}
 							>
 								<ControlLabel>Enter in title:</ControlLabel>
 								<FormControl
-									type="text"
+									type='text'
 									value={this.state.title}
-									placeholder="Enter title, eg: Verbs"
+									placeholder='Enter title, eg: Verbs'
 									onChange={this.handleChange}
 								/>
 								<FormControl.Feedback />
