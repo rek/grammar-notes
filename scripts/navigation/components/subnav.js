@@ -7,6 +7,7 @@ import {LinkContainer} from 'react-router-bootstrap'
 
 export class SubNav extends React.Component {
 	render() {
+		console.log('Selected:', this.props.selected);
 		let items = this.props.data.map((item) => {
 			let link = '/items/' + item.item_id
 

@@ -13,11 +13,8 @@ import {
 import Actions from '../actions'
 
 export class App extends React.Component {
-	constructor() {
+	constructor(props) {
 		super(props)
-
-		// console.log('this', this);
-		this.submitForm = this.submitForm.bind(this)
 
 		this.state = {
 			title: ''
@@ -36,7 +33,7 @@ export class App extends React.Component {
 		console.log(this);
 
 		this.props.create(
-			this.refs.title.value
+			this.state.title
 		)
 	}
 
@@ -62,7 +59,7 @@ export class App extends React.Component {
 			<div className='container-fluid'>
 				<div className='row'>
 					<div className='col-md-6'>
-						<form onSubmit={this.submitForm}>
+						<form onSubmit={this.submitForm.bind(this)}>
 							<FormGroup
 								controlId='formBasicText'
 								validationState={this.getValidationState()}
@@ -72,7 +69,7 @@ export class App extends React.Component {
 									type='text'
 									value={this.state.title}
 									placeholder='Enter title, eg: Verbs'
-									onChange={this.handleChange}
+									onChange={this.handleChange.bind(this)}
 								/>
 								<FormControl.Feedback />
 								<HelpBlock>Validation is based on string length.</HelpBlock>

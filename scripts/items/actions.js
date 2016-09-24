@@ -18,24 +18,31 @@ export default function(dispatch) {
 			});
 		},
 
-		save: (title) => {
+		save: (data) => {
 			console.log('this', this);
-			console.log('title', title);
+			console.log('data', data);
+			ajax().post('/api/item/' + data.id, {
+				// item_title: data.title,
+				content: data.content || 'Default content...'
+			}).then((data) => {
+				console.log('ADDED DATA:', data);
+			})
 
 			dispatch({
 				type: 'SAVE',
 				payload: {
-					title
+					id: data.id,
+					content: data.content
 				}
 			});
 		},
 
-		edit: (title) => {
-			console.log('title', title);
+		edit: (id) => {
+			console.log('id', id);
 			dispatch({
-				type: 'EDIT',
+				type: 'SUB-PAGE',
 				payload: {
-					title
+					id
 				}
 			});
 		},

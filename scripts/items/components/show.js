@@ -27,8 +27,9 @@ export class App extends React.Component {
 
 	componentDidMount() {
 		console.log('show mounted', this);
+		console.log('Page:', this.props.routeParams.itemId);
 
-		ajax().get('/api/items/' + this.props.routeParams.itemId).then((data) => {
+		ajax().get('/api/item/' + this.props.routeParams.itemId).then((data) => {
 			console.log('GOT DATA in show:', data);
 			this.setState({item: data.data})
 		})
@@ -38,18 +39,17 @@ export class App extends React.Component {
 	handleSave(event) {
 		event.preventDefault()
 
-		this.props.save(
-			this.state.content
-		)
+		this.props.save({
+			id: this.props.routeParams.itemId,
+			content: this.state.content
+		})
 	}
 
 	// edit the item title
 	handleEdit(event) {
 		event.preventDefault()
-
-		console.log(this);
-		console.log('c', this.state.content);
-		// this.props.edit(this)
+		console.log('Editing:', this.props.routeParams.itemId);
+		this.props.edit(this.props.routeParams.itemId)
 	}
 
 	handleChange(event) {

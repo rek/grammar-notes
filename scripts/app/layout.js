@@ -11,8 +11,9 @@ import NotificationActions from '../notifications/actions'
 export class App extends React.Component {
 	constructor(props) {
 		super(props);
-
+console.log('props', props);
 		this.state = {
+			subnavSelection: 1,
 			subnav: [{
 				item_id: '1',
 				item_title: 'nice'
@@ -39,7 +40,10 @@ export class App extends React.Component {
 		return (
             <div>
 				<Nav />
-				<SubNav data={this.state.subnav} />
+				<div>
+					this.state.subnavSelection: {this.state.subnavSelection}
+				</div>
+				<SubNav data={this.state.subnav} selected={this.state.subnavSelection} />
 				<Notification alertType={alertType} message={message} onDismiss={dismissNotification}/>
 
 				{this.props.children}
