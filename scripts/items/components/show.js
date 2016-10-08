@@ -81,8 +81,11 @@ export class App extends React.Component {
 	}
 
 	render() {
+			// <show state={this.state}/>
 		return (
-			<show state={this.state}/>
+			<div>
+				showing
+			</div>
 		)
 	}
 }

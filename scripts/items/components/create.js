@@ -50,7 +50,7 @@ export class App extends React.Component {
 	}
 
 	handleChange(event) {
-		console.log('11', this);
+		console.log('Change', this);
 		this.setState({title: event.target.value});
 	}
 
@@ -93,4 +93,4 @@ export class App extends React.Component {
 // App.propTypes = {
 // }
 
-export default connect((state) => state.ItemsReducer, Actions)(App)
+export default connect((state) => state.ItemsReducer)(App)

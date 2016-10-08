@@ -11,7 +11,7 @@ import ItemEdit from '../items/components/edit';
 import ItemShow from '../items/components/show';
 
 const setHome = (nextState, replace) => {
-	replace({pathname: '/items/admin'})
+	replace({pathname: '/admin/items'})
 }
 
 // const requireAuth = (nextState, replace) => {
@@ -31,6 +31,8 @@ export default class AppRouter extends React.Component {
 		this.routes = (
 			<Route path='/' component={Layout}>
 				<IndexRoute component={Home} onEnter={setHome}/>
+				{/*
+				*/}
 				<Route path='/items/:itemId' component={ItemShow} />
 				<Route path='/admin/items' component={ItemList} />
 				<Route path='/admin/items/create' component={ItemCreate} />
