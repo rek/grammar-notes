@@ -21,7 +21,7 @@ const Show = ({state, handleChange, handleEdit, handleSave}) =>
 						<ControlLabel>Content:</ControlLabel>
 						<FormControl
 							value={state.content}
-							onChange={handleChange.bind(this)}
+							onChange={handleChange}
 							componentClass='textarea'
 							placeholder='...'
 						/>
@@ -29,34 +29,39 @@ const Show = ({state, handleChange, handleEdit, handleSave}) =>
 				</div>
 			</div>
 			<ButtonToolbar>
-				<Button type='submit' bsSize='small' onClick={handleEdit.bind(this)}>Edit Item</Button>
-				<Button type='submit' bsStyle='primary' onClick={handleSave.bind(this)}>Save</Button>
+				<Button type='submit' bsSize='small' onClick={handleEdit}>Edit Item</Button>
+				<Button type='submit' bsStyle='primary' onClick={handleSave}>Save</Button>
 			</ButtonToolbar>
 		</form>
 	</div>
 
-export class App extends React.Component {
-	constructor(props) {
-		super(props)
-		console.log('props', props);
-		console.log('this', this);
-
-		this.state = {
+const App = React.createClass({
+	getInitialState() {
+		return {
 			key: v4(),
-			title: '',
-			content: 'test'
+			item: {
+				title: 'No Title',
+				content: 'Default Content'
+			}
 		}
-	}
+	},
 
 	componentDidMount() {
-		console.log('show mounted', this);
-		console.log('Page:', this.props.routeParams.itemId);
+		// console.log('Show mounted', this);
+		// console.log('Page:', this.props.routeParams.itemId);
 
-		ajax().get('/api/item/' + this.props.routeParams.itemId).then((data) => {
-			console.log('GOT DATA in show:', data);
-			this.setState({item: data.data})
-		})
-	}
+		ajax().get('/api/item/' + this.props.routeParams.itemId)
+			.then((data) => {
+				// console.log('GOT DATA in show:', data);
+				let item = data.data
+				console.log('Item:', item);
+				this.setState({
+					content: item.content
+				})
+			}).catch((error) => {
+				console.log('error', error);
+			})
+	},
 
 	// save the content of the item
 	handleSave(event) {
@@ -66,32 +71,38 @@ export class App extends React.Component {
 			id: this.props.routeParams.itemId,
 			content: this.state.content
 		})
-	}
+	},
 
 	// edit the item title
 	handleEdit(event) {
 		event.preventDefault()
 		console.log('Editing:', this.props.routeParams.itemId);
 		this.props.edit(this.props.routeParams.itemId)
-	}
+	},
 
 	handleChange(event) {
 		event.preventDefault()
 		this.setState({content: event.target.value});
-	}
+	},
 
 	render() {
-			// <show state={this.state}/>
+		// console.log('this', this);
+		// console.log('state', this.state);
+
 		return (
 			<div>
-				showing
+				<Show
+					state={this.state}
+					handleChange={this.handleChange}
+					handleEdit={this.handleEdit}
+					handleSave={this.handleSave}
+				/>
 			</div>
 		)
 	}
-}
+})
 
 // to actions we need to add the things we wanna pass in
 // Actions
 // eg: handleChange
-
-export default connect((state) => state.ItemsReducer, Actions)(Show)
+export default connect((state) => state.ItemsReducer, Actions)(App)

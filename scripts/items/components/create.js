@@ -93,4 +93,4 @@ export class App extends React.Component {
 // App.propTypes = {
 // }
 
-export default connect((state) => state.ItemsReducer)(App)
+export default connect((state) => state.ItemsReducer, Actions)(App)

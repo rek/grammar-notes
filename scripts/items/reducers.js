@@ -18,13 +18,13 @@ export default handleActions([
 			console.log('state', state);
 			console.log('action', action);
 
-			if (!state.subnav) {
-				state.subnav = []
-			}
+			// if (!state.subnav) {
+			// 	state.subnav = []
+			// }
 
-			return Object.assign({}, state, {
-				subnav: state.subnav.push(action.payload)
-			});
+			// return Object.assign({}, state, {
+			// 	subnav: state.subnav.push(action.payload)
+			// });
 		}
 	},
 ]);
