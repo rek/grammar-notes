@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import {Navbar, Nav, NavItem} from 'react-bootstrap'
-import {LinkContainer} from 'react-router-bootstrap'
+import {LinkContainer, IndexLinkContainer} from 'react-router-bootstrap'
 
 export class MainNav extends React.Component {
 	render() {
@@ -10,12 +10,15 @@ export class MainNav extends React.Component {
 			<Navbar>
 				<Navbar.Header>
 					<Navbar.Brand>
-						<LinkContainer to="/">
+						<IndexLinkContainer to="/">
 							<NavItem>Grammar notes</NavItem>
-						</LinkContainer>
+						</IndexLinkContainer>
 					</Navbar.Brand>
 				</Navbar.Header>
 				<Nav>
+					<LinkContainer to="/home">
+						<NavItem>Home</NavItem>
+					</LinkContainer>
 					<LinkContainer to="/admin/items">
 						<NavItem>Items admin</NavItem>
 					</LinkContainer>
