@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import {Navbar, Nav, NavItem} from 'react-bootstrap'
-import {LinkContainer, IndexLinkContainer} from 'react-router-bootstrap'
+import {LinkContainer} from 'react-router-bootstrap'
 
 export class MainNav extends React.Component {
 	render() {
@@ -10,18 +10,18 @@ export class MainNav extends React.Component {
 			<Navbar>
 				<Navbar.Header>
 					<Navbar.Brand>
-						<IndexLinkContainer to="/">
+						<LinkContainer to="/">
 							<NavItem>Grammar notes</NavItem>
-						</IndexLinkContainer>
+						</LinkContainer>
 					</Navbar.Brand>
 				</Navbar.Header>
 				<Nav>
-					<IndexLinkContainer to="/admin/items">
+					<LinkContainer to="/admin/items">
 						<NavItem>Items admin</NavItem>
-					</IndexLinkContainer>
-					<IndexLinkContainer to="/admin/items/create">
+					</LinkContainer>
+					<LinkContainer to="/admin/items/create">
 						<NavItem>Add item</NavItem>
-					</IndexLinkContainer>
+					</LinkContainer>
 				</Nav>
 			</Navbar>
 		)
@@ -36,4 +36,4 @@ export default connect((state) => {
 	// console.log('state', state);
 	// dont need our own reducer at the moment:
 	return state.AppReducer
-})(MainNav)
+}, null, null, {pure: false})(MainNav)
