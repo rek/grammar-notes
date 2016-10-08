@@ -29,7 +29,9 @@ const Show = ({state, handleChange, handleEdit, handleSave}) =>
 				</div>
 			</div>
 			<ButtonToolbar>
+				{/*
 				<Button type='submit' bsSize='small' onClick={handleEdit}>Edit Item</Button>
+				*/}
 				<Button type='submit' bsStyle='primary' onClick={handleSave}>Save</Button>
 			</ButtonToolbar>
 		</form>

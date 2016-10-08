@@ -3,6 +3,11 @@ import {connect} from 'react-redux'
 import {ajax} from '../../utils'
 import {v4} from 'node-uuid';
 
+import {NavItem} from 'react-bootstrap'
+import {LinkContainer} from 'react-router-bootstrap'
+
+import Actions from '../actions'
+
 const App = React.createClass({
 	getInitialState() {
 		return {
@@ -12,25 +17,33 @@ const App = React.createClass({
 
 	componentDidMount() {
 		ajax().get('/api/items').then((items) => {
-			console.log('GOT DATA:', items);
+			// console.log('GOT DATA:', items);
 			this.setState({items: items.data})
 		})
-	},
-
-	handelClick(item) {
-		console.log('item', item);
 	},
 
 	render() {
 		let items = this.state.items || []
 
+		// onClick={() => this.props.adminEditItem(item)}
+
 		return (
 			<div className='container-fluid'>
 				{items.map((item) => {
+					// console.log('item', item);
+					let link = '/admin/items/' + item.item_id
+
 					return (
 						<div className='row' key={v4()}>
-							<div className='col-md-6' onClick={(context) => this.handelClick(context)}>
+							<div className='col-md-6'>
+								<LinkContainer to={link} key={v4()}>
+									<NavItem>{item.item_title}</NavItem>
+								</LinkContainer>
+
+								{/*
 								{item.item_title}
+								*/}
+
 							</div>
 						</div>
 					)
@@ -40,4 +53,4 @@ const App = React.createClass({
 	}
 })
 
-export default connect((state) => state.ItemsReducer)(App)
+export default connect((state) => state.ItemsReducer, Actions)(App)

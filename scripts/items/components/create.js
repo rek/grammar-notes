@@ -40,10 +40,10 @@ export class App extends React.Component {
 	getValidationState() {
 		const length = this.state.title.length
 
-		if (length > 10) {
+		if (length > 3) {
 			return 'success'
-		} else if (length > 5) {
-			return 'warning'
+		// } else if (length > 5) {
+		// 	return 'warning'
 		} else if (length > 0) {
 			return 'error'
 		}

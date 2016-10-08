@@ -10,8 +10,26 @@ const createItems = (title, content) => {
 	})
 }
 
+const updateItem = (data) =>
+	ajax().put('/api/item/' + data.item_id, {
+		item_title: data.item_title,
+		content: data.content || 'Default content...'
+	})
+
+
 export default function(dispatch) {
 	return {
+		adminEditItem(item) {
+			console.log('item', item);
+			updateItem.then(() => {
+				console.log('done');
+				dispatch({
+					type: 'UPDATE',
+					payload: item
+				});
+			})
+		},
+
 		create: (title, content) => {
 			createItems(title, content)
 
