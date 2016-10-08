@@ -1,7 +1,6 @@
 System.config({
   defaultJSExtensions: true,
   transpiler: "babel",
-  trace: true,
   babelOptions: {
     "optional": [
       "runtime",
@@ -12,9 +11,11 @@ System.config({
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*"
   },
+  trace: true,
   blacklist: {},
 
   map: {
+    "ReactTraining/react-router": "github:ReactTraining/react-router@v4",
     "axios": "npm:axios@0.14.0",
     "babel": "npm:babel-core@5.8.38",
     "babel-runtime": "npm:babel-runtime@5.8.38",
@@ -23,7 +24,7 @@ System.config({
     "lodash": "npm:lodash@4.15.0",
     "moment": "npm:moment@2.15.0",
     "node-uuid": "npm:node-uuid@1.4.7",
-    "react": "npm:react@15.3.1",
+    "react": "npm:react@15.3.2",
     "react-addons-test-utils": "npm:react-addons-test-utils@0.14.8",
     "react-bootstrap": "npm:react-bootstrap@0.30.3",
     "react-bootstrap-table": "npm:react-bootstrap-table@1.6.2",
@@ -97,7 +98,7 @@ System.config({
     "github:jspm/nodelibs-zlib@0.1.0": {
       "browserify-zlib": "npm:browserify-zlib@0.1.4"
     },
-    "npm:asap@2.0.4": {
+    "npm:asap@2.0.5": {
       "domain": "github:jspm/nodelibs-domain@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
@@ -198,7 +199,7 @@ System.config({
       "base64-js": "npm:base64-js@0.0.8",
       "child_process": "github:jspm/nodelibs-child_process@0.1.0",
       "fs": "github:jspm/nodelibs-fs@0.1.2",
-      "ieee754": "npm:ieee754@1.1.6",
+      "ieee754": "npm:ieee754@1.1.8",
       "isarray": "npm:isarray@1.0.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
@@ -351,7 +352,7 @@ System.config({
     "npm:fbjs@0.6.1": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:fbjs@0.8.4": {
+    "npm:fbjs@0.8.5": {
       "core-js": "npm:core-js@1.2.7",
       "immutable": "npm:immutable@3.8.1",
       "isomorphic-fetch": "npm:isomorphic-fetch@2.2.1",
@@ -420,7 +421,7 @@ System.config({
       "object.entries": "npm:object.entries@1.0.3"
     },
     "npm:isomorphic-fetch@2.2.1": {
-      "node-fetch": "npm:node-fetch@1.6.1",
+      "node-fetch": "npm:node-fetch@1.6.3",
       "whatwg-fetch": "npm:whatwg-fetch@0.10.1"
     },
     "npm:loose-envify@1.2.0": {
@@ -434,7 +435,7 @@ System.config({
       "bn.js": "npm:bn.js@4.11.6",
       "brorand": "npm:brorand@1.0.6"
     },
-    "npm:node-fetch@1.6.1": {
+    "npm:node-fetch@1.6.3": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "encoding": "npm:encoding@0.1.12",
       "http": "github:jspm/nodelibs-http@1.7.1",
@@ -486,7 +487,7 @@ System.config({
       "vm": "github:jspm/nodelibs-vm@0.1.0"
     },
     "npm:promise@7.1.1": {
-      "asap": "npm:asap@2.0.4",
+      "asap": "npm:asap@2.0.5",
       "fs": "github:jspm/nodelibs-fs@0.1.2"
     },
     "npm:public-encrypt@4.0.0": {
@@ -516,7 +517,7 @@ System.config({
       "react": "npm:react@0.14.8"
     },
     "npm:react-addons-update@15.3.1": {
-      "react": "npm:react@15.3.1"
+      "react": "npm:react@15.3.2"
     },
     "npm:react-bootstrap-table@1.6.2": {
       "classnames": "npm:classnames@2.2.5",
@@ -531,7 +532,7 @@ System.config({
       "invariant": "npm:invariant@2.2.1",
       "keycode": "npm:keycode@2.1.4",
       "process": "github:jspm/nodelibs-process@0.1.2",
-      "react": "npm:react@15.3.1",
+      "react": "npm:react@15.3.2",
       "react-dom": "npm:react-dom@15.3.1",
       "react-overlays": "npm:react-overlays@0.6.6",
       "react-prop-types": "npm:react-prop-types@0.4.0",
@@ -544,10 +545,10 @@ System.config({
     },
     "npm:react-class@2.1.0": {
       "object-assign": "npm:object-assign@4.1.0",
-      "react": "npm:react@15.3.1"
+      "react": "npm:react@15.3.2"
     },
     "npm:react-clonewithprops@1.0.1": {
-      "react": "npm:react@15.3.1"
+      "react": "npm:react@15.3.2"
     },
     "npm:react-datagrid@2.1.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
@@ -561,7 +562,7 @@ System.config({
       "normalize.css": "npm:normalize.css@3.0.3",
       "object-assign": "npm:object-assign@4.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
-      "react": "npm:react@15.3.1",
+      "react": "npm:react@15.3.2",
       "react-class": "npm:react-class@1.2.4",
       "react-dom": "npm:react-dom@15.3.1",
       "react-load-mask": "npm:react-load-mask@2.0.2",
@@ -578,18 +579,18 @@ System.config({
       "react": "npm:react@0.14.8"
     },
     "npm:react-dom@15.3.1": {
-      "react": "npm:react@15.3.1"
+      "react": "npm:react@15.3.2"
     },
     "npm:react-event-names@1.0.0": {
       "has-touch": "npm:has-touch@1.0.1"
     },
     "npm:react-load-mask@2.0.2": {
       "object-assign": "npm:object-assign@4.1.0",
-      "react": "npm:react@15.3.1",
+      "react": "npm:react@15.3.2",
       "react-dom": "npm:react-dom@15.3.1"
     },
     "npm:react-loader@2.4.0": {
-      "react": "npm:react@15.3.1",
+      "react": "npm:react@15.3.2",
       "react-dom": "npm:react-dom@15.3.1",
       "spin.js": "npm:spin.js@2.3.2"
     },
@@ -600,7 +601,7 @@ System.config({
       "object-assign": "npm:object-assign@4.1.0",
       "point-in-triangle": "npm:point-in-triangle@1.0.1",
       "process": "github:jspm/nodelibs-process@0.1.2",
-      "react": "npm:react@15.3.1",
+      "react": "npm:react@15.3.2",
       "react-dom": "npm:react-dom@15.3.1",
       "react-event-names": "npm:react-event-names@1.0.0",
       "react-style-normalizer": "npm:react-style-normalizer@1.2.8",
@@ -610,7 +611,7 @@ System.config({
     "npm:react-overlays@0.6.6": {
       "classnames": "npm:classnames@2.2.5",
       "dom-helpers": "npm:dom-helpers@2.4.0",
-      "react": "npm:react@15.3.1",
+      "react": "npm:react@15.3.2",
       "react-dom": "npm:react-dom@15.3.1",
       "react-prop-types": "npm:react-prop-types@0.4.0",
       "warning": "npm:warning@3.0.0"
@@ -625,7 +626,7 @@ System.config({
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
     "npm:react-prop-types@0.4.0": {
-      "react": "npm:react@15.3.1",
+      "react": "npm:react@15.3.2",
       "warning": "npm:warning@3.0.0"
     },
     "npm:react-redux@4.4.5": {
@@ -634,11 +635,11 @@ System.config({
       "lodash": "npm:lodash@4.15.0",
       "loose-envify": "npm:loose-envify@1.2.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
-      "react": "npm:react@15.3.1",
+      "react": "npm:react@15.3.2",
       "redux": "npm:redux@3.6.0"
     },
     "npm:react-router-bootstrap@0.23.1": {
-      "react": "npm:react@15.3.1"
+      "react": "npm:react@15.3.2"
     },
     "npm:react-router@2.8.1": {
       "history": "npm:history@2.1.2",
@@ -646,12 +647,12 @@ System.config({
       "invariant": "npm:invariant@2.2.1",
       "loose-envify": "npm:loose-envify@1.2.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
-      "react": "npm:react@15.3.1",
+      "react": "npm:react@15.3.2",
       "warning": "npm:warning@3.0.0"
     },
     "npm:react-simple-toolbar@1.0.5": {
       "object-assign": "npm:object-assign@2.1.1",
-      "react": "npm:react@15.3.1",
+      "react": "npm:react@15.3.2",
       "react-clonewithprops": "npm:react-clonewithprops@1.0.1",
       "react-style-normalizer": "npm:react-style-normalizer@1.2.8"
     },
@@ -659,7 +660,7 @@ System.config({
       "classnames": "npm:classnames@2.2.5",
       "element-class": "npm:element-class@0.2.2",
       "lodash": "npm:lodash@4.15.0",
-      "react": "npm:react@15.3.1",
+      "react": "npm:react@15.3.2",
       "react-addons-update": "npm:react-addons-update@15.3.1",
       "react-dom": "npm:react-dom@15.3.1"
     },
@@ -668,7 +669,7 @@ System.config({
       "has-touch": "npm:has-touch@1.0.1",
       "object-assign": "npm:object-assign@4.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
-      "react": "npm:react@15.3.1",
+      "react": "npm:react@15.3.2",
       "react-class": "npm:react-class@2.1.0",
       "react-dom": "npm:react-dom@15.3.1",
       "react-load-mask": "npm:react-load-mask@2.0.2",
@@ -678,8 +679,8 @@ System.config({
       "fbjs": "npm:fbjs@0.6.1",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:react@15.3.1": {
-      "fbjs": "npm:fbjs@0.8.4",
+    "npm:react@15.3.2": {
+      "fbjs": "npm:fbjs@0.8.5",
       "loose-envify": "npm:loose-envify@1.2.0",
       "object-assign": "npm:object-assign@4.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
@@ -765,7 +766,7 @@ System.config({
     "npm:uncontrollable@4.0.3": {
       "invariant": "npm:invariant@2.2.1",
       "process": "github:jspm/nodelibs-process@0.1.2",
-      "react": "npm:react@15.3.1"
+      "react": "npm:react@15.3.2"
     },
     "npm:url@0.10.3": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",

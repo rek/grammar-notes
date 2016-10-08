@@ -17,10 +17,10 @@ export class MainNav extends React.Component {
 				</Navbar.Header>
 				<Nav>
 					<LinkContainer to="/admin/items">
-						<NavItem>Items</NavItem>
+						<NavItem>Items admin</NavItem>
 					</LinkContainer>
 					<LinkContainer to="/admin/items/create">
-						<NavItem>Add Item</NavItem>
+						<NavItem>Add item</NavItem>
 					</LinkContainer>
 				</Nav>
 			</Navbar>

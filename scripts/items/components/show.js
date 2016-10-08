@@ -12,6 +12,29 @@ import {ajax} from '../../utils'
 
 import Actions from '../actions'
 
+const Show = ({state, handleChange, handleEdit, handleSave}) =>
+	<div className='container-fluid' key={state.key}>
+		<form>
+			<div className='row'>
+				<div className='col-md-6'>
+					<FormGroup controlId='formControlsTextarea'>
+						<ControlLabel>Content:</ControlLabel>
+						<FormControl
+							value={state.content}
+							onChange={handleChange.bind(this)}
+							componentClass='textarea'
+							placeholder='...'
+						/>
+					</FormGroup>
+				</div>
+			</div>
+			<ButtonToolbar>
+				<Button type='submit' bsSize='small' onClick={handleEdit.bind(this)}>Edit Item</Button>
+				<Button type='submit' bsStyle='primary' onClick={handleSave.bind(this)}>Save</Button>
+			</ButtonToolbar>
+		</form>
+	</div>
+
 export class App extends React.Component {
 	constructor(props) {
 		super(props)
@@ -59,29 +82,13 @@ export class App extends React.Component {
 
 	render() {
 		return (
-			<div className='container-fluid' key={this.state.key}>
-				<form>
-					<div className='row'>
-						<div className='col-md-6'>
-							<FormGroup controlId='formControlsTextarea'>
-								<ControlLabel>Content:</ControlLabel>
-								<FormControl
-									value={this.state.content}
-									onChange={this.handleChange.bind(this)}
-									componentClass='textarea'
-									placeholder='...'
-								/>
-							</FormGroup>
-						</div>
-					</div>
-					<ButtonToolbar>
-						<Button type='submit' bsSize='small' onClick={this.handleEdit.bind(this)}>Edit Item</Button>
-						<Button type='submit' bsStyle='primary' onClick={this.handleSave.bind(this)}>Save</Button>
-					</ButtonToolbar>
-				</form>
-			</div>
+			<show state={this.state}/>
 		)
 	}
 }
 
-export default connect((state) => state.ItemsReducer, Actions)(App)
+// to actions we need to add the things we wanna pass in
+// Actions
+// eg: handleChange
+
+export default connect((state) => state.ItemsReducer, Actions)(Show)

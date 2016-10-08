@@ -1,14 +1,19 @@
 import {ajax} from '../utils'
 
+const createItems = (title, content) => {
+	ajax().post('/api/items', {
+		item_title: title,
+		content: content || 'Default content...'
+	}).then((data) => {
+		console.log('ADDED DATA:', data);
+		return data
+	})
+}
+
 export default function(dispatch) {
 	return {
 		create: (title, content) => {
-			ajax().post('/api/items', {
-				item_title: title,
-				content: content || 'Default content...'
-			}).then((data) => {
-				console.log('ADDED DATA:', data);
-			})
+			createItems(title, content)
 
 			dispatch({
 				type: 'CREATE',
