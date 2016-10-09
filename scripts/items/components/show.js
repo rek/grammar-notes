@@ -20,6 +20,7 @@ const Show = ({state, handleChange, handleEdit, handleSave}) =>
 					<FormGroup controlId='formControlsTextarea'>
 						<ControlLabel>Content:</ControlLabel>
 						<FormControl
+							rows='20'
 							value={state.content}
 							onChange={handleChange}
 							componentClass='textarea'
@@ -70,7 +71,7 @@ const App = React.createClass({
 		event.preventDefault()
 
 		this.props.save({
-			id: this.props.routeParams.itemId,
+			item_id: this.props.routeParams.itemId,
 			content: this.state.content
 		})
 	},

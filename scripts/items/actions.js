@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import {ajax} from '../utils'
 
 const createItems = (title, content) => {
@@ -10,22 +11,19 @@ const createItems = (title, content) => {
 	})
 }
 
-const updateItem = (data) =>
-	ajax().put('/api/item/' + data.item_id, {
-		item_title: data.item_title,
-		content: data.content || 'Default content...'
-	})
+const updateItem = (data, fields) =>
+	ajax().put('/api/item/' + data.item_id, _.pick(data, fields))
 
 
 export default function(dispatch) {
 	return {
-		adminEditItem(item) {
-			console.log('item', item);
-			updateItem.then(() => {
-				console.log('done');
+		adminEditItem(data) {
+			// console.log('Item:', data);
+			updateItem(data, ['item_title']).then(() => {
+				// console.log('Done');
 				dispatch({
 					type: 'UPDATE',
-					payload: item
+					payload: data
 				});
 			})
 		},
@@ -42,12 +40,8 @@ export default function(dispatch) {
 		},
 
 		save: (data) => {
-			console.log('this', this);
-			console.log('data', data);
-			ajax().post('/api/item/' + data.id, {
-				// item_title: data.title,
-				content: data.content || 'Default content...'
-			}).then((data) => {
+			console.log('Data:', data);
+			updateItem(data, ['content']).then((data) => {
 				console.log('ADDED DATA:', data);
 			})
 

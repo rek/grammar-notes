@@ -28,27 +28,31 @@ const App = React.createClass({
 		// onClick={() => this.props.adminEditItem(item)}
 
 		return (
-			<div className='container-fluid'>
-				{items.map((item) => {
-					// console.log('item', item);
-					let link = '/admin/items/' + item.item_id
+	        <div>
+				<h2>Edit titles</h2>
 
-					return (
-						<div className='row' key={v4()}>
-							<div className='col-md-6'>
-								<LinkContainer to={link} key={v4()}>
-									<NavItem>{item.item_title}</NavItem>
-								</LinkContainer>
+				<div className='container-fluid'>
+					{items.map((item) => {
+						// console.log('item', item);
+						let link = '/admin/items/' + item.item_id
 
-								{/*
-								{item.item_title}
-								*/}
+						return (
+							<div className='row' key={v4()}>
+								<div className='col-md-6'>
+									<LinkContainer to={link} key={v4()}>
+										<NavItem>{item.item_title}</NavItem>
+									</LinkContainer>
 
+									{/*
+									{item.item_title}
+									*/}
+
+								</div>
 							</div>
-						</div>
-					)
-				})}
-			</div>
+						)
+					})}
+				</div>
+	        </div>
 		)
 	}
 })

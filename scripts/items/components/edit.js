@@ -27,7 +27,7 @@ const App = React.createClass({
 
 	submitForm(event) {
 		event.preventDefault()
-		// console.log(this.state);
+		console.log('State:', this.state);
 		this.props.adminEditItem(this.state)
 	},
 
