@@ -5,7 +5,8 @@ let gulp = require('gulp'),
 
 gulp.task('html-prod', function() {
 	let html = gulp.src('index.prod.html')
-		.pipe(gulp.dest('index.html'))
+		.pipe(plugins.rename('index.html'))
+		.pipe(gulp.dest('.'))
 
 	return merge(html);
 })
