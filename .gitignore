@@ -45,3 +45,5 @@ dist
 
 # env creds
 .env
+
+scripts/app.bundle.js
