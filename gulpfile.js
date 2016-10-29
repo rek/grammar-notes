@@ -31,8 +31,12 @@ gulp.task('styles', function() {
 })
 
 gulp.task('jspm', function() {
-	return gulp.src(pkg.paths.jspm + '/*')
-		.pipe(gulp.dest(pkg.paths.distClient + '/scripts/' + pkg.paths.jspm))
+	// return gulp.src(pkg.paths.jspm + '/*')
+		// .pipe(gulp.dest(pkg.paths.distClient + '/scripts/' + pkg.paths.jspm))
+	return gulp.src('scripts/app/app.js')
+		.pipe(plugins.jspm())
+		.pipe(gulp.dest('.'))
+
 })
 
 gulp.task('js', function() {
