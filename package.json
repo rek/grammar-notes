@@ -20,7 +20,7 @@
     "test": true
   },
   "scripts": {
-    "start": "gulp",
+    "start": "gulp build-prod; gulp jspm",
     "hero": "heroku local web",
     "test": "gulp test",
     "build": "gulp build"
