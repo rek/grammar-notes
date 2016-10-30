@@ -12,6 +12,8 @@ if (prod) {
   console.log(`running in production mode(with caching)-make sure you have
     "Disable cache (while DevTools is open)" checked in the browser
     to see the changes while developing`)
+
+  console.log('process.env', process.env);
 } else {
   cache = -1
 }
@@ -21,12 +23,12 @@ const server = httpServer.createServer({
   root: '',
   robots: true,
   headers: {
-    'Access-Control-Allow-Origin': 'http://localhost:9777',
+    'Access-Control-Allow-Origin': `http://localhost:${port}`,
     'Access-Control-Allow-Credentials': 'true'
   }
 })
 
-if (prod) {
+if (!prod) {
   require('chokidar-socket-emitter')({app: server.server})
 }
 
