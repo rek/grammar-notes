@@ -25,7 +25,6 @@
     "test": "gulp test",
     "server": "node server",
     "bundle": "jspm bundle scripts/app/app.js scripts/app.bundle.js --minify",
-    "postinstall": "jspm install"
   },
   "repository": {
     "type": "git",
