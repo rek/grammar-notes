@@ -2,8 +2,9 @@
 
 const httpServer = require('http-server')
 const port = process.env.PORT || 9777 // eslint-disable-line
-const cache = 3600
 const prod = process.env.NODE_ENV === 'production' // eslint-disable-line
+
+let cache = 3600
 
 if (prod) {
   console.log(`running in production mode(with caching)-make sure you have
