@@ -1,8 +1,8 @@
 'use strict'
 
 const httpServer = require('http-server')
-const port = process.env.PORT || 9777 // eslint-disable-line
 const prod = process.env.NODE_ENV === 'production' // eslint-disable-line
+const port = process.env.PORT || (prod ? 80 : 9777) // eslint-disable-line
 
 let cache = 3600
 
