@@ -16,7 +16,9 @@ To help with note taking when writing a grammar.
 
 ```
 	$ yarn
-	$ gulp build
+	$ npm run bundle
+	$ git add scripts/app.bundle
+	$ git commit -m 'New Build'
 ```
 
 ## Production mode (using jspm bundle)
