@@ -36,8 +36,8 @@
     "url": "https://github.com/rek/grammar-notes.git/issues"
   },
   "homepage": "https://github.com/rek/grammar-notes.git",
-  "dependencies": {},
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
     "babel-core": "^6.5.0",
     "babel-eslint": "^6.1.2",
     "babel-polyfill": "^6.5.0",
