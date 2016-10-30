@@ -24,7 +24,8 @@
     "hero": "heroku local web",
     "test": "gulp test",
     "server": "node server",
-    "bundle": "jspm bundle scripts/app/app.js scripts/app.bundle.js --minify"
+    "bundle": "jspm bundle scripts/app/app.js scripts/app.bundle.js --minify",
+    "heroku-postbuild": "jspm install"
   },
   "repository": {
     "type": "git",
