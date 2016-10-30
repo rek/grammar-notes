@@ -39,7 +39,6 @@ gulp.task('jspm', function() {
 		.pipe(plugins.jspm({inject: true}))
 		.pipe(plugins.rename('build.js'))
 		.pipe(gulp.dest('./jspm_packages/'))
-
 })
 
 gulp.task('js', function() {
