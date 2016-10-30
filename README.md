@@ -5,11 +5,11 @@ To help with note taking when writing a grammar.
 ## To run in dev:
 
 ```
-	$ yarn
 	$ yarn global add jspm (if you don't have it already)
+	$ yarn
 	$ jspm install
-	$ gulp
-	$ node server
+	$ gulp // <- to build and start watching dev
+	$ node server // <- to host it locally at http://localhost:9777/
 ```
 
 ## To make a build:
