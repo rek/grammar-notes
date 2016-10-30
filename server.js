@@ -4,6 +4,8 @@ const httpServer = require('http-server')
 const prod = process.env.NODE_ENV === 'production' // eslint-disable-line
 const port = process.env.PORT || (prod ? 80 : 9777) // eslint-disable-line
 
+console.log('Starting in prod mode:', prod);
+
 let cache = 3600
 
 if (prod) {
