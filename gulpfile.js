@@ -1,3 +1,5 @@
+'use strict'
+
 let gulp = require('gulp'),
 	pkg = require('./package.json'),
 	merge = require('merge-stream'),
