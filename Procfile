@@ -1,1 +1,1 @@
-web: gulp build-prod; gulp jspm; node server
+web: jspm install; gulp build-prod; gulp jspm; node server
