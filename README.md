@@ -28,6 +28,10 @@ To help with note taking when writing a grammar.
    $ NODE_ENV=prod npm start
 ```
 
+## To deploy:
+
+Merge into release branch
+
 ## To test:
 
 ```
