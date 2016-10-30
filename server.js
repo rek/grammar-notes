@@ -13,7 +13,7 @@ if (prod) {
     "Disable cache (while DevTools is open)" checked in the browser
     to see the changes while developing`)
 
-  console.log('process.env', process.env);
+  // console.log('process.env', process.env);
 } else {
   cache = -1
 }

@@ -1,3 +1,5 @@
+console.log('Starting to start app');
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
