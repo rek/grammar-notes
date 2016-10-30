@@ -5,16 +5,17 @@ To help with note taking when writing a grammar.
 ## To run in dev:
 
 ```
-	$ npm install
-	$ npm install -g jspm (if you don't have it already)
+	$ yarn
+	$ yarn global add jspm (if you don't have it already)
 	$ jspm install
 	$ gulp
+	$ node server
 ```
 
 ## To make a build:
 
 ```
-	$ npm install
+	$ yarn
 	$ gulp build
 ```
 
@@ -34,4 +35,4 @@ To help with note taking when writing a grammar.
 
 ## License
 
-This project is licensed under the MIT license, Copyright (c) 2016 Maciej Rosiek. For more information see `LICENSE`.
+This project is licensed under the MIT license, Copyright (c) 2016 Adam Tombleson. For more information see `LICENSE`.
