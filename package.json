@@ -25,7 +25,7 @@
     "test": "gulp test",
     "server": "node server",
     "bundle": "jspm bundle scripts/app/app.js scripts/app.bundle.js --minify",
-    "heroku-postbuild": "jspm install"
+    "postinstall": "jspm install"
   },
   "repository": {
     "type": "git",
