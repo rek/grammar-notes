@@ -37,7 +37,7 @@ gulp.task('jspm', function() {
 		// .pipe(gulp.dest(pkg.paths.distClient + '/scripts/' + pkg.paths.jspm))
 	return gulp.src('scripts/app/app.js')
 		.pipe(plugins.jspm({inject: true}))
-		.pipe(gulp.dest('./scripts'))
+		.pipe(gulp.dest('./jspm_packages/build.js'))
 
 })
 
