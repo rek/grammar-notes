@@ -23,6 +23,7 @@
     "start": "gulp build-prod; gulp jspm",
     "hero": "heroku local web",
     "test": "gulp test",
+    "server": "node server",
     "bundle": "jspm bundle scripts/app/app.js scripts/app.bundle.js --minify"
   },
   "repository": {

@@ -24,8 +24,8 @@ To help with note taking when writing a grammar.
 ## Production mode (using jspm bundle)
 
 ```
-   $ npm build
-   $ NODE_ENV=prod npm start
+   $ gulp build-prod
+   $ NODE_ENV=prod npm run server
 ```
 
 ## To deploy:
