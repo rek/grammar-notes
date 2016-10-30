@@ -43,7 +43,11 @@
     "chokidar": "^1.2.0",
     "chokidar-socket-emitter": "^0.5.4"
   },
-  "cache_directories": ["bower_components", "node_modules", "jspm_packages"],
+  "cache_directories": [
+    "bower_components",
+    "node_modules",
+    "jspm_packages"
+  ],
   "dependencies": {
     "babel-core": "^6.5.0",
     "babel-eslint": "^6.1.2",
