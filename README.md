@@ -39,6 +39,12 @@ Merge into release branch
 	$ gulp test
 ```
 
+## Misc
+
+To set the build pack:
+
+heroku buildpacks:set https://github.com/tengyifei/heroku-buildpack-nodejs-jspm -a grammar-manager
+
 ## Changelog
 
 ### 0.2.0 - Server taken out
