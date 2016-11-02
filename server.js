@@ -1,8 +1,9 @@
 'use strict'
+/* eslint-env node */
 
 const httpServer = require('http-server')
-const prod = process.env.NODE_ENV === 'production' // eslint-disable-line
-const port = process.env.PORT || (prod ? 80 : 9777) // eslint-disable-line
+const prod = process.env.NODE_ENV === 'production'  /* eslint-env node */
+const port = process.env.PORT || (prod ? 80 : 9777) /* eslint-env node */
 
 console.log('Starting in prod mode:', prod);
 
