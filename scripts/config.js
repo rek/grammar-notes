@@ -1,6 +1,6 @@
 export default {
 	APIRoot: 'https://grammar-notes-server.herokuapp.com',
-	APIPort: '27677'
+	APIPort: ''
 	// APIPort: '20920'
 	// APIPort: '3411'
 
