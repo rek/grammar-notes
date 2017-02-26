@@ -14,7 +14,6 @@ const createItems = (title, content) => {
 const updateItem = (data, fields) =>
 	ajax().put('/api/item/' + data.item_id, _.pick(data, fields))
 
-
 export default function(dispatch) {
 	return {
 		adminEditItem(data) {

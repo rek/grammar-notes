@@ -1,9 +1,10 @@
 'use strict'
 
-let gulp = require('gulp'),
-	pkg = require('./package.json'),
-	merge = require('merge-stream'),
-	plugins = require('gulp-load-plugins')();
+let gulp = require('gulp')
+let pkg = require('./package.json')
+let merge = require('merge-stream')
+let plugins = require('gulp-load-plugins')()
+let exec = require('child_process').exec
 
 gulp.task('html-prod', function() {
 	let html = gulp.src('index.prod.html')
@@ -101,7 +102,25 @@ gulp.task('build', ['html-dev', 'styles'], function() {
 gulp.task('build-prod', ['html-prod', 'styles'], function() {
 });
 
+gulp.task('dev',
+	gulp.series('build', gulp.parallel('watch', 'server'))
+)
+
+// gulp.task('dev', function() {
+// 	gulp.parallel(['build', 'watch', 'server'])
+// })
+
+gulp.task('server', function(callback) {
+	exec('node server.js', function(err, stdout, stderr) {
+		console.log(stdout);
+		console.log(stderr);
+		callback(err);
+	});
+})
+
 // var spawn = require('child_process').spawn;
-gulp.task('default', ['build', 'watch'], function() {
+gulp.task('default', ['build', 'watch'], function(callback) {
 	// spawn('node', ['devServer.js'], {stdio: 'inherit'});
+
+	callback()
 });
