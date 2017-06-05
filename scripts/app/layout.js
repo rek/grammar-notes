@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 
 import Nav from '../navigation/components/main';
 
@@ -28,14 +29,14 @@ export class App extends React.Component {
 }
 
 App.contextTypes = {
-	router: React.PropTypes.object.isRequired
+	router: PropTypes.object.isRequired
 }
 
 App.propTypes = {
-	dismissNotification: React.PropTypes.func,
-	message: React.PropTypes.string,
-	alertType: React.PropTypes.string,
-	children: React.PropTypes.object
+	dismissNotification: PropTypes.func,
+	message: PropTypes.string,
+	alertType: PropTypes.string,
+	children: PropTypes.object
 }
 
 export default connect((state) => state.AppReducer, NotificationActions)(App)

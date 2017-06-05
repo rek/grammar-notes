@@ -23,13 +23,12 @@ const setHome = (nextState, replace) => {
 // 	}
 // }
 
-export default class AppRouter extends React.Component {
+class AppRouter extends React.Component {
 	constructor() {
 		super();
 
 				// <Route path='/items/:id' component={ItemShow}></Route>
-		this.routes = (
-			<Route path='/' component={Layout}>
+		this.routes = (<Route path='/' component={Layout}>
 				// <IndexRoute component={Home} onEnter={setHome}/>
 				{/*
 				*/}
@@ -58,3 +57,5 @@ export default class AppRouter extends React.Component {
 // AppRouter.propTypes = {
 // 	store: React.PropTypes.object
 // };
+
+export default AppRouter

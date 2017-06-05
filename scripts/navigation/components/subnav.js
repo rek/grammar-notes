@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {v4} from 'node-uuid';
+import PropTypes from 'prop-types'
 
 import {Navbar, Nav, NavItem} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
@@ -32,7 +33,7 @@ let SubNav = ({data = [], selected}) => {
 
 
 SubNav.contextTypes = {
-	router: React.PropTypes.object.isRequired
+	router: PropTypes.object.isRequired
 }
 
 export default connect()(SubNav)

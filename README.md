@@ -2,21 +2,27 @@
 
 To help with note taking when writing a grammar.
 
+## To setup:
+
+```
+	$ yarn global add jspm
+	$ yarn global add gulpjs/gulp#4.0
+	$ yarn
+	$ jspm install
+```
+
 ## To run in dev:
 
 ```
-	$ yarn global add jspm (if you don't have it already)
-	$ yarn
-	$ jspm install
-	$ gulp // <- to build and start watching dev
-	$ node server // <- to host it locally at http://localhost:9777/
+	$ yarn dev // <- to build and start watching dev
+	$ yarn server // <- to host it locally at http://localhost:9777/
 ```
 
 ## To make a build:
 
 ```
 	$ yarn
-	$ npm run bundle
+	$ yarn bundle
 	$ git add scripts/app.bundle
 	$ git commit -m 'New Build'
 ```
@@ -25,7 +31,7 @@ To help with note taking when writing a grammar.
 
 ```
    $ gulp build-prod
-   $ NODE_ENV=prod npm run server
+   $ NODE_ENV=prod yarn server
 ```
 
 ## To deploy:

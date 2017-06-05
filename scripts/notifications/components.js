@@ -1,5 +1,6 @@
 import {Alert} from 'react-bootstrap';
 import React from 'react';
+import PropTypes from 'prop-types'
 
 export default class Notification extends React.Component {
     render() {
@@ -18,8 +19,8 @@ export default class Notification extends React.Component {
 }
 
 Notification.propTypes = {
-    dismissNotification: React.PropTypes.func,
-    message: React.PropTypes.string,
-    alertType: React.PropTypes.string,
-    onDismiss: React.PropTypes.func
+    dismissNotification: PropTypes.func,
+    message: PropTypes.string,
+    alertType: PropTypes.string,
+    onDismiss: PropTypes.func
 };

@@ -23,7 +23,7 @@ gulp.task('html-dev', function() {
 })
 
 gulp.task('styles', function() {
-	let bootstrap = gulp.src(pkg.paths.bower + '/bootstrap/dist/css/bootstrap*.css')
+	let bootstrap = gulp.src(pkg.paths.modules + '/bootstrap/dist/css/bootstrap*.css')
 		.pipe(gulp.dest('styles'))
 
 	// let styles = gulp.src(pkg.paths.srcClient + '/styles/*.css')

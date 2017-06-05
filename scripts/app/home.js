@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {ajax} from '../utils'
 
@@ -35,7 +36,7 @@ export class App extends React.Component {
 }
 
 App.contextTypes = {
-	router: React.PropTypes.object.isRequired
+	router: PropTypes.object.isRequired
 }
 
 export default connect((state) => state.AppReducer)(App)
