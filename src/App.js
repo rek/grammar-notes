@@ -4,8 +4,12 @@ import {Provider} from 'react-redux';
 
 import logo from "./logo.svg";
 import "./App.css";
-import "./styles/bootstrap.css";
-import "./styles/bootstrap-theme.css";
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+
+// import "./styles/bootstrap.css";
+// import "./styles/bootstrap-theme.css";
 
 import {
   BrowserRouter as Router,
