@@ -8,19 +8,21 @@ import {LinkContainer} from 'react-router-bootstrap'
 
 import Actions from '../actions'
 
-const App = React.createClass({
-	getInitialState() {
-		return {
+class App extends React.Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
 			items: []
 		}
-	},
+	}
 
 	componentDidMount() {
 		ajax().get('/api/items').then((items) => {
 			// console.log('GOT DATA:', items);
 			this.setState({items: items.data})
 		})
-	},
+	}
 
 	render() {
 		let items = this.state.items || []
@@ -28,7 +30,7 @@ const App = React.createClass({
 		// onClick={() => this.props.adminEditItem(item)}
 
 		return (
-	        <div>
+			<div>
 				<h2>Edit titles</h2>
 
 				<div className='container-fluid'>
@@ -52,9 +54,9 @@ const App = React.createClass({
 						)
 					})}
 				</div>
-	        </div>
+			</div>
 		)
 	}
-})
+}
 
 export default connect((state) => state.ItemsReducer, Actions)(App)

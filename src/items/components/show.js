@@ -38,16 +38,18 @@ const Show = ({state, handleChange, handleEdit, handleSave}) =>
 		</form>
 	</div>
 
-const App = React.createClass({
-	getInitialState() {
-		return {
+class App extends React.Component {
+	constructor(props) {
+		super(props)
+
+		this.state = {
 			key: v4(),
 			item: {
 				title: 'No Title',
 				content: 'Default Content'
 			}
 		}
-	},
+	}
 
 	componentDidMount() {
 		// console.log('Show mounted', this);
@@ -64,7 +66,7 @@ const App = React.createClass({
 			}).catch((error) => {
 				console.log('error', error);
 			})
-	},
+	}
 
 	// save the content of the item
 	handleSave(event) {
@@ -74,19 +76,19 @@ const App = React.createClass({
 			item_id: this.props.routeParams.itemId,
 			content: this.state.content
 		})
-	},
+	}
 
 	// edit the item title
 	handleEdit(event) {
 		event.preventDefault()
 		console.log('Editing:', this.props.routeParams.itemId);
 		this.props.edit(this.props.routeParams.itemId)
-	},
+	}
 
 	handleChange(event) {
 		event.preventDefault()
 		this.setState({content: event.target.value});
-	},
+	}
 
 	render() {
 		// console.log('this', this);
@@ -103,7 +105,7 @@ const App = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
 // to actions we need to add the things we wanna pass in
 // Actions

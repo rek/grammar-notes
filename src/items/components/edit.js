@@ -12,28 +12,24 @@ import {
 
 import Actions from '../actions'
 
-const App = React.createClass({
-	getInitialState() {
-		return {}
-	},
-
+class App extends React.Component {
 	componentDidMount() {
 		ajax().get('/api/item/' + this.props.params.itemId).then((item) => {
 			// console.log('GOT DATA:', item);
 			this.setState({...item.data})
 			// console.log('Item:', this.state.item);
 		})
-	},
+	}
 
 	submitForm(event) {
 		event.preventDefault()
 		console.log('State:', this.state);
 		this.props.adminEditItem(this.state)
-	},
+	}
 
 	handleChange(event) {
 		this.setState({item_title: event.target.value});
-	},
+	}
 
 	getValidationState() {
 		const item = this.state.item_title || ''
@@ -46,7 +42,7 @@ const App = React.createClass({
 		} else if (length > 0) {
 			return 'error'
 		}
-	},
+	}
 
 	render() {
 		// const item = this.props.route.item;
@@ -82,6 +78,6 @@ const App = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
 export default connect((state) => state.ItemsReducer, Actions)(App)
