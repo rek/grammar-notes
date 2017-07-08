@@ -108,7 +108,7 @@ gulp.task('dev',
 )
 
 // var spawn = require('child_process').spawn;
-gulp.task('default', gulp.series('build', 'watch'), function(callback) {
+gulp.task('default', gulp.series('dev'), function(callback) {
 	// spawn('node', ['devServer.js'], {stdio: 'inherit'});
 
 	callback()

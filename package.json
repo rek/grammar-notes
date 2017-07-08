@@ -2,6 +2,7 @@
   "name": "grammar-notes",
   "version": "0.2.0",
   "description": "Notes app for grammar system.",
+  "author": "Adam Tombleson <rekarnar@gmail.com>",
   "main": "server.js",
   "engines": {
     "node": "6.x",
@@ -32,7 +33,6 @@
     "type": "git",
     "url": "https://github.com/rek/grammar-notes.git"
   },
-  "author": "Adam Tombleson <rekarnar@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/rek/grammar-notes.git/issues"

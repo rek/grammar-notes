@@ -14,8 +14,7 @@ To help with note taking when writing a grammar.
 ## To run in dev:
 
 ```
-	$ yarn dev // <- to build and start watching dev
-	$ yarn server // <- to host it locally at http://localhost:9777/
+	$ yarn dev // <- to build and start watching dev, host at: http://localhost:9777/
 ```
 
 ## To make a build:
