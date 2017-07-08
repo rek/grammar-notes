@@ -1,113 +1,27 @@
 {
   "name": "grammar-notes",
-  "version": "0.2.0",
-  "description": "Notes app for grammar system.",
-  "author": "Adam Tombleson <rekarnar@gmail.com>",
-  "main": "server.js",
-  "engines": {
-    "node": "6.x",
-    "npm": "3.x"
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.16.2",
+    "node-uuid": "^1.4.8",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-bootstrap": "^0.31.0",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "react-router": "^4.1.1",
+    "react-router-bootstrap": "^0.24.2",
+    "react-router-dom": "^4.1.1",
+    "redux": "^3.7.1"
   },
-  "paths": {
-    "modules": "node_modules",
-    "jspm": "jspm_packages",
-    "srcClient": "src/client",
-    "srcServer": "src/server",
-    "distClient": "dist/client",
-    "distServer": "dist/server",
-    "dist": "dist"
-  },
-  "options": {
-    "test": true
+  "devDependencies": {
+    "react-scripts": "1.0.10"
   },
   "scripts": {
-    "dev": "gulp",
-    "start": "gulp build-prod; gulp jspm",
-    "hero": "heroku local web",
-    "test": "gulp test",
-    "serve": "node server",
-    "server": "node server",
-    "bundle": "jspm bundle scripts/app/app.js jspm_scripts/build.js --minify"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rek/grammar-notes.git"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/rek/grammar-notes.git/issues"
-  },
-  "homepage": "https://github.com/rek/grammar-notes.git",
-  "devDependencies": {
-    "chokidar": "^1.2.0",
-    "chokidar-socket-emitter": "^0.5.4",
-    "eslint": "^3.14.1",
-    "eslint-plugin-babel": "^3.3.0",
-    "eslint-plugin-react": "^6.2.0"
-  },
-  "cache_directories": [
-    "node_modules",
-    "jspm_packages"
-  ],
-  "dependencies": {
-    "babel-core": "^6.22.1",
-    "babel-eslint": "^6.1.2",
-    "babel-polyfill": "^6.22.0",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-react": "^6.22.0",
-    "bootstrap": "^3.3.7",
-    "gulp": "gulpjs/gulp#4.0",
-    "gulp-babel": "^6.1.2",
-    "gulp-changed": "^1.3.2",
-    "gulp-clean": "^0.3.2",
-    "gulp-copy": "0.0.2",
-    "gulp-env": "^0.4.0",
-    "gulp-jspm": "^0.5.13",
-    "gulp-load-plugins": "^1.2.4",
-    "gulp-mocha": "^2.2.0",
-    "gulp-newer": "^1.2.0",
-    "gulp-nodemon": "^2.1.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-task-loader": "^1.4.4",
-    "gulp-watch": "^4.3.11",
-    "http-server": "^0.9.0",
-    "jspm": "^0.16.51",
-    "merge-stream": "^1.0.1",
-    "systemjs": "^0.20.2"
-  },
-  "jspm": {
-    "dependencies": {
-      "axios": "npm:axios@^0.14.0",
-      "lodash": "npm:lodash@^4.17.4",
-      "moment": "npm:moment@^2.11.1",
-      "node-uuid": "npm:node-uuid@^1.4.7",
-      "prop-types": "npm:prop-types@^15.5.10",
-      "react": "npm:react@^15.5.4",
-      "react-addons-test-utils": "npm:react-addons-test-utils@^0.14.7",
-      "react-bootstrap": "npm:react-bootstrap@^0.31.0",
-      "react-bootstrap-table": "npm:react-bootstrap-table@^1.4.5",
-      "react-datagrid": "npm:react-datagrid@^2.0.1",
-      "react-dom": "npm:react-dom@^15.5.4",
-      "react-loader": "npm:react-loader@^2.0.0",
-      "react-paginate": "npm:react-paginate@^0.5.4",
-      "react-redux": "npm:react-redux@^4.4.5",
-      "react-router": "npm:react-router@^4.1.1",
-      "react-router-bootstrap": "npm:react-router-bootstrap@^0.23.1",
-      "redux": "npm:redux@^3.6.0",
-      "redux-mock-store": "npm:redux-mock-store@^0.0.6",
-      "redux-thunk": "npm:redux-thunk@^1.0.3",
-      "systemjs": "npm:systemjs@^0.19.20",
-      "systemjs-hot-reloader": "github:alexisvincent/systemjs-hot-reloader@^0.5.5"
-    },
-    "devDependencies": {
-      "babel": "npm:babel-core@^5.8.24",
-      "babel-runtime": "npm:babel-runtime@^5.8.24",
-      "chai": "npm:chai@^3.5.0",
-      "core-js": "npm:core-js@^1.1.4"
-    },
-    "buildConfig": {
-      "transpileES6": true,
-      "minify": true
-    }
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
