@@ -6,6 +6,7 @@ import thunkMiddleware from 'redux-thunk';
 
 import './index.css';
 import App from './App';
+
 import NotificationReducer from './notifications/reducers';
 import AuthReducer from './auth/reducers';
 
@@ -16,16 +17,18 @@ let devTools = window.devToolsExtension ?
 		return f
 	}
 
-let store = createStore(combineReducers({
-    // AppReducer,
-    AuthReducer,
-    NotificationReducer,
-    // ItemsReducer
-}),
-// default state:
-{},
-//
-compose(applyMiddleware(thunkMiddleware), devTools));
+let store = createStore(
+    combineReducers({
+	    // AppReducer,
+	    AuthReducer,
+	    NotificationReducer,
+	    // ItemsReducer
+	}),
+	// default state:
+	{},
+	//
+	compose(applyMiddleware(thunkMiddleware), devTools)
+);
 
 ReactDOM.render(<App store={store}/>, document.getElementById('root'));
 registerServiceWorker();

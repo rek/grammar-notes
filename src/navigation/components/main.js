@@ -5,37 +5,43 @@ import PropTypes from 'prop-types'
 import {Navbar, Nav, NavItem} from 'react-bootstrap'
 import {LinkContainer, IndexLinkContainer} from 'react-router-bootstrap'
 
+import * as Actions from '../../auth/actions'
+// console.log('Actions', Actions);
+
 export class MainNav extends React.Component {
-	render() {
-		console.log('main nav this', this);
-		return (
-			<Navbar>
-				<Navbar.Header>
-					<Navbar.Brand>
-						<IndexLinkContainer to="/">
-							<NavItem>Grammar notes</NavItem>
-						</IndexLinkContainer>
-					</Navbar.Brand>
-				</Navbar.Header>
-				<Nav>
-					<LinkContainer to="/admin/items">
-						<NavItem>Items admin</NavItem>
-					</LinkContainer>
-					<LinkContainer to="/admin/items/create">
-						<NavItem>Add item</NavItem>
-					</LinkContainer>
-				</Nav>
-			</Navbar>
-		)
-	}
+  static propTypes = {
+    auth: PropTypes.object
+  }
+
+  render() {
+    // console.log('main nav this.props', this.props);
+    return (
+      <Navbar>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <IndexLinkContainer to="/">
+              <div>
+                Grammar notes
+              </div>
+            </IndexLinkContainer>
+          </Navbar.Brand>
+        </Navbar.Header>
+        <Nav>
+          <LinkContainer to="/admin/items">
+            <NavItem>Items admin</NavItem>
+          </LinkContainer>
+          <LinkContainer to="/admin/items/create">
+            <NavItem>Add item</NavItem>
+          </LinkContainer>
+          {this.props.auth &&
+            <LinkContainer to="/logout">
+              <NavItem>Logout</NavItem>
+            </LinkContainer>
+          }
+        </Nav>
+      </Navbar>
+    )
+  }
 }
 
-MainNav.contextTypes = {
-	router: PropTypes.object.isRequired
-}
-
-export default connect((state) => {
-	// console.log('state', state);
-	// dont need our own reducer at the moment:
-	return state.AppReducer
-}, null, null, {pure: false})(MainNav)
+export default connect((state) => state.AuthReducer, Actions)(MainNav)

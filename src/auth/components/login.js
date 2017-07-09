@@ -1,16 +1,22 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {
-  Redirect,
-} from "react-router-dom"
 
-import Actions from '../actions'
+import {login} from '../actions'
+
+const Actions = {
+  login
+}
 
 export class App extends React.Component {
   state = {
-    redirectToReferrer: false,
     password: '',
-    email: ''
+    email: '',
+    isAdmin: false
+  }
+
+  static propTypes = {
+    login: PropTypes.func.isRequired
   }
 
   login = (e) => {
@@ -27,51 +33,53 @@ export class App extends React.Component {
   }
 
   render() {
-    const {from} = this.props.location.state || { from: { pathname: '/' } }
-    const {redirectToReferrer} = this.state
-
-    if (redirectToReferrer) {
-      return (
-        <Redirect to={from}/>
-      )
-    }
+    // console.log('Login this.props', this.props);
+    // const {from} = this.props.location.state || { from: { pathname: '/' } }
 
     return (
       <nav className='navbar navbar-default'>
         <div className='container-fluid'>
           <div className='collapse navbar-collapse'>
-            <form className='navbar-form navbar-right'>
-              <div className='input-group'>
-                <span className='input-group-addon'>
-                  <i className='glyphicon glyphicon-user'></i>
-                </span>
-                <input
-                  type='email'
-                  className='form-control'
-                  name='email'
-                  value={this.state.email}
-                  onChange={this.updateField}
-                  placeholder='Email Address'
-                />
+            <form className='navbar-form navbar-left'>
+              <div>
+                <div className='input-group'>
+                  <span className='input-group-addon'>
+                    <i className='glyphicon glyphicon-user'></i>
+                  </span>
+                  <input
+                    type='email'
+                    className='form-control'
+                    name='email'
+                    value={this.state.email}
+                    onChange={this.updateField}
+                    placeholder='Email Address'
+                  />
+                </div>
               </div>
 
-              <div className='input-group'>
-                <span className='input-group-addon'>
-                  <i className='glyphicon glyphicon-lock'></i>
-                </span>
-                <input
-                  id='password'
-                  type='password'
-                  className='form-control'
-                  name='password'
-                  value={this.state.password}
-                  onChange={this.updateField}
-                  placeholder='Password'
-                />
+              <br />
+
+              <div>
+                <div className='input-group'>
+                  <span className='input-group-addon'>
+                    <i className='glyphicon glyphicon-lock'></i>
+                  </span>
+                  <input
+                    id='password'
+                    type='password'
+                    className='form-control'
+                    name='password'
+                    value={this.state.password}
+                    onChange={this.updateField}
+                    placeholder='Password'
+                  />
+                </div>
               </div>
+
+              <br />
 
               <button
-                className='btn btn-primary'
+                className='btn btn-primary navbar-left'
                 onClick={this.login}
               >
                 Login
@@ -84,4 +92,4 @@ export class App extends React.Component {
   }
 }
 
-export default connect((state) => state.AppReducer, Actions)(App)
+export default connect((state) => state.AuthReducer, Actions)(App)
