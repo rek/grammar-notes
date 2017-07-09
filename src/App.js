@@ -8,13 +8,11 @@ import "./App.css";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 
-// import "./styles/bootstrap.css";
-// import "./styles/bootstrap-theme.css";
-
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Redirect,
+  // withRouter
 } from "react-router-dom"
 
 import ItemList from "./items/components/list";
@@ -22,20 +20,49 @@ import ItemCreate from "./items/components/create";
 import ItemEdit from "./items/components/edit";
 import ItemShow from "./items/components/show";
 
+import Login from "./auth/components/login";
+
 import Nav from "./navigation/components/main";
+
+const fakeAuth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated = true
+    setTimeout(cb, 100) // fake async
+  },
+  signout(cb) {
+    this.isAuthenticated = false
+    setTimeout(cb, 100)
+  }
+}
 
 const Home = () =>
   <div>
-    Home
+    <h3>This is the home page.</h3>
+    <p>Perhaps here we can list some useful help information</p>
   </div>
+
+const PrivateRoute = ({component: Component, ...rest}) => (
+  <Route {...rest} render={props => (
+    fakeAuth.isAuthenticated ? (
+      <Component {...props}/>
+    ) : (
+      <Redirect to={{
+        pathname: '/login',
+        state: {from: props.location}
+      }}/>
+    )
+  )}/>
+)
 
 const Menu = () =>
   <div>
-    <Route path="/home" component={Home} />
-    <Route path="/items/:itemId" component={ItemShow} />
-    <Route path="/admin/items" component={ItemList} />
-    <Route path="/admin/items/create" component={ItemCreate} />
-    <Route path="/admin/items/:itemId" component={ItemEdit} />
+    <Route path="/login" component={Login}/>
+    <PrivateRoute path="/" exact component={Home} />
+    <PrivateRoute path="/items/:itemId" component={ItemShow} />
+    <PrivateRoute path="/admin/items" component={ItemList} />
+    <PrivateRoute path="/admin/items/create" component={ItemCreate} />
+    <PrivateRoute path="/admin/items/:itemId" component={ItemEdit} />
   </div>
 
 class App extends Component {
@@ -58,5 +85,5 @@ class App extends Component {
   }
 }
 
-export default App;
-// export default connect()(App);
+// export default App;
+export default connect()(App);

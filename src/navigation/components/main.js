@@ -7,6 +7,7 @@ import {LinkContainer, IndexLinkContainer} from 'react-router-bootstrap'
 
 export class MainNav extends React.Component {
 	render() {
+		console.log('main nav this', this);
 		return (
 			<Navbar>
 				<Navbar.Header>
@@ -17,9 +18,6 @@ export class MainNav extends React.Component {
 					</Navbar.Brand>
 				</Navbar.Header>
 				<Nav>
-					<LinkContainer to="/home">
-						<NavItem>Home</NavItem>
-					</LinkContainer>
 					<LinkContainer to="/admin/items">
 						<NavItem>Items admin</NavItem>
 					</LinkContainer>

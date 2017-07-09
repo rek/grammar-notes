@@ -7,6 +7,7 @@ import thunkMiddleware from 'redux-thunk';
 import './index.css';
 import App from './App';
 import NotificationReducer from './notifications/reducers';
+import AuthReducer from './auth/reducers';
 
 let devTools = window.devToolsExtension ?
 	window.devToolsExtension() :
@@ -17,6 +18,7 @@ let devTools = window.devToolsExtension ?
 
 let store = createStore(combineReducers({
     // AppReducer,
+    AuthReducer,
     NotificationReducer,
     // ItemsReducer
 }),
